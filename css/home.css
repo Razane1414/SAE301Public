@@ -1,0 +1,18 @@
+/* Styles globaux pour toutes les pages */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body {
+    background-color: #252323 !important;
+    color: white !important;
+
+}
+
+
+.btn-rejoindre{
+    background-color: #E3B025 !important;
+}
