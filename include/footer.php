@@ -1,6 +1,3 @@
-<?php
-//footer.php
-?>
 <footer>
     <div class="container">
         <div class="footer-separator"></div>

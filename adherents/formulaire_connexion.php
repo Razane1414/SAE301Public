@@ -49,8 +49,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Google Fonts pour Plus Jakarta Sans -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;800&display=swap" rel="stylesheet">
     <!-- Lien vers le fichier CSS personnalisé -->
-    <link rel="stylesheet" href="../css/connexion.css">
-    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../include/css/connexion.css">
+    <link rel="stylesheet" href="../include/css/home.css">
 </head>
 
 <body>
