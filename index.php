@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Team Vulcan</title>
-    <link rel="stylesheet" href="public/css/home.css">
+    <link rel="stylesheet" href="css\home.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 
 
@@ -14,7 +15,7 @@
       <div class="container">
         <div class="row align-items-center">
           <div class="col-3">
-            <img src="votre-logo.png" alt="Logo" class="img-fluid" style="max-width: 150px;">
+            <img src="images\Logo1.png" alt="Logo" class="img-fluid" style="max-width: 100px;">
           </div>
 
           <!-- Navigation au centre -->
@@ -36,5 +37,9 @@
         </div>
       </div>
     </header>
+
+    <?php include 'footer.php'; ?>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

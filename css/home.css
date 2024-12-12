@@ -24,3 +24,55 @@ header {
 .nav-link {
     color: white !important;
 }
+
+
+
+
+
+
+
+footer {
+    background-color: #252323;
+    color: #E3B025;
+    padding: 20px 0;
+}
+
+.footer-separator {
+    border-top: 2px solid #E3B025;
+    margin-bottom: 50px;
+}
+
+.footer-links a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.footer-icon {
+    margin-right: 10px;
+    color: #E3B025;
+}
+
+.footer-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #E3B025;
+}
+
+.footer-info, .footer-schedule {
+    color: #fff;
+}
+
+.footer-info a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-info a:hover {
+    text-decoration: underline;
+}
