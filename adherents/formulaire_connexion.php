@@ -1,18 +1,6 @@
 <?php
-// Connexion à la base de données
-$servername = "localhost";  
-$username = "root";         
-$password = "root";             
-$dbname = "team_vulcan";    
-$port = 8888;               
-
-// Créer la connexion avec le port spécifié
-$conn = new mysqli($servername, $username, $password, $dbname, $port);
-
-// Vérifier la connexion
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+// Inclure le fichier de configuration pour la connexion à la base de données
+require_once '../config/config.php';
 
 // Vérifier si le formulaire a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -23,15 +11,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Rechercher l'utilisateur dans la base de données avec le nom et l'email
     $sql = "SELECT * FROM adherents WHERE nom = ? AND email = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ss", $nom, $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$nom, $email]);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
     // Vérifier si l'utilisateur existe avec cet email et nom
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-
+    if ($row) {
         // Vérifier si le mot de passe correspond
         if ($password === $row['password']) {
             // Démarrer une session et rediriger vers l'espace membre
@@ -62,8 +47,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Google Fonts pour Plus Jakarta Sans -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;800&display=swap" rel="stylesheet">
     <!-- Lien vers le fichier CSS personnalisé -->
-    <link rel="stylesheet" href="css/connexion.css">
-    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="../css/connexion.css">
+    <link rel="stylesheet" href="../css/home.css">
 </head>
 
 <body>
