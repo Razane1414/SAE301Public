@@ -1,7 +1,7 @@
+<?php
 
-<?php 
-
-class Adherent {
+class Adherent
+{
     private $id;
     private $nom;
     private $prenom;
@@ -9,7 +9,8 @@ class Adherent {
     private $password;
 
     // Constructeur pour un adhérent
-    public function __construct($nom, $prenom, $email, $password) {
+    public function __construct($nom, $prenom, $email, $password)
+    {
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->email = $email;
@@ -17,25 +18,29 @@ class Adherent {
     }
 
     // Méthode pour enregistrer un adhérent dans la base de données
-    public function save($pdo) {
+    public function save($pdo)
+    {
         $stmt = $pdo->prepare("INSERT INTO adherents (nom, prenom, email, password) VALUES (?, ?, ?, ?)");
         $stmt->execute([$this->nom, $this->prenom, $this->email, $this->password]);
     }
 
     // Méthode pour vérifier si l'email existe déjà
-    public static function emailExists($pdo, $email) {
+    public static function emailExists($pdo, $email)
+    {
         $stmt = $pdo->prepare("SELECT * FROM adherents WHERE email = ?");
         $stmt->execute([$email]);
         return $stmt->fetch(PDO::FETCH_ASSOC); // Retourne un tableau si trouvé, sinon false
     }
 
     // Getter pour l'ID
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
     // Getter pour le nom
-    public function getNom() {
+    public function getNom()
+    {
         return $this->nom;
     }
 }
