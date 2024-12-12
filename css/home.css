@@ -1,3 +1,4 @@
+
 /* Styles globaux pour toutes les pages */
 * {
     margin: 0;
@@ -9,10 +10,17 @@
 body {
     background-color: #252323 !important;
     color: white !important;
-
 }
 
+header {
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
 
 .btn-rejoindre{
     background-color: #E3B025 !important;
+}
+
+.nav-link {
+    color: white !important;
 }
