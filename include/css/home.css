@@ -1,4 +1,3 @@
-
 /* Styles globaux pour toutes les pages */
 * {
     margin: 0;
@@ -12,15 +11,16 @@ body {
     color: white !important;
 }
 
-p{
+p {
     font-size: 16px;
 }
+
 header {
     margin-top: 25px;
     margin-bottom: 25px;
-  }
+}
 
-.btn-rejoindre{
+.btn-rejoindre {
     background-color: #E3B025 !important;
 }
 
@@ -54,12 +54,12 @@ header {
 .home {
     margin: 0px !important;
     padding: 0px !important;
-    position: relative; 
+    position: relative;
     width: 100% !important;
     height: 90vh;
     display: flex;
     align-items: center;
-    overflow: hidden; 
+    overflow: hidden;
 }
 
 /* Ajouter l'image de fond assombrie via le pseudo-élément */
@@ -71,20 +71,20 @@ header {
     width: 100%;
     height: 100%;
     background-image: url('../images/background.jpg');
-    background-size: 65% 100%; 
-    background-position: right center; 
+    background-size: 65% 100%;
+    background-position: right center;
     background-repeat: no-repeat;
-    filter: brightness(50%); 
-    z-index: 1; 
+    filter: brightness(50%);
+    z-index: 1;
 }
 
 /* Texte en overlay */
 .overlay-text {
     position: relative;
-    left: 5%; 
+    left: 5%;
     color: white;
     font-size: 1.5rem;
-    z-index: 2; 
+    z-index: 2;
     max-width: 50%;
 }
 
@@ -94,13 +94,16 @@ h4.sous-titre {
 }
 
 .highlight {
-    color: #E3B025;  
+    color: #E3B025;
 }
 
-.home > .btn-rejoindre{
+.home>.btn-rejoindre {
     padding: 10px 60px !important;
 
 }
+
+
+/* Matteo */
 footer {
     background-color: #252323;
     color: #E3B025;
@@ -134,7 +137,8 @@ footer {
     color: #E3B025;
 }
 
-.footer-info, .footer-schedule {
+.footer-info,
+.footer-schedule {
     color: #fff;
 }
 
@@ -145,4 +149,72 @@ footer {
 
 .footer-info a:hover {
     text-decoration: underline;
+}
+
+
+/* Alix */
+body {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+}
+
+.image-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.image-container img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    position: relative;
+    z-index: 1;
+}
+
+.yellow-corner-top {
+    position: absolute;
+    top: -10px;
+    left: 17%;
+    width: 100px;
+    height: 100px;
+    background-color: #ffcc00;
+    z-index: 0;
+}
+
+.yellow-corner-bottom {
+    position: absolute;
+    bottom: -10px;
+    right: 16.75%;
+    width: 100px;
+    height: 100px;
+    background-color: #ffcc00;
+    z-index: 0;
+}
+
+.content {
+    padding: 20px;
+}
+
+.yellow-diamond {
+    width: 10px;
+    height: 10px;
+    background-color: #ffcc00;
+    transform: rotate(45deg);
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.section-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.section-text {
+    margin-bottom: 20px;
 }
