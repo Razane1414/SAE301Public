@@ -1,9 +1,9 @@
 <?php
 $hote = 'localhost'; 
-$port = '3306'; 
+$port = '8888'; 
 $nom_bd = 'team_vulcan'; 
 $identifiant = 'root'; 
-$mot_de_passe = ''; 
+$mot_de_passe = 'root'; 
 
 try {
     $pdo = new PDO(
