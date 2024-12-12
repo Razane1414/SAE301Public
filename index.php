@@ -12,7 +12,9 @@
 
 
 <body>
+
     <?php include 'include/header.php'; ?>
+
 
     <div class="home">
         <div class="overlay-text">
@@ -24,7 +26,6 @@
             <a href="#" class="btn-rejoindre btn">BOXER !</a>
         </div>
     </div>
-
 
     <div class="container my-5">
         <div class="row">

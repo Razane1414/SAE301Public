@@ -1,10 +1,10 @@
 <?php
-$hote = 'localhost';
-$port = '3306';
-$nom_bd = 'team_vulcan';
-$identifiant = 'root';
-$mot_de_passe = '';
 
+$hote = 'localhost'; 
+$port = '3306'; 
+$nom_bd = 'team_vulcan'; 
+$identifiant = 'root'; 
+$mot_de_passe = ''; 
 try {
     $pdo = new PDO(
         "mysql:host=$hote;port=$port;dbname=$nom_bd",
