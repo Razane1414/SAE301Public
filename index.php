@@ -15,7 +15,7 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-3">
-                <img src="images/Logi1.png" alt="Logo" class="img-fluid" style="max-width: 150px;">
+                <img src="images/Logo1.png" alt="Logo" class="img-fluid" style="max-width: 100px;">
             </div>
 
             <!-- Navigation au centre -->
@@ -41,8 +41,8 @@
 
   <div class="home">
       <div class="overlay-text">
-          <h4>WELCOM TO THE FIGHT</h4>
-          <h1>TEAM VULCAN, PASSION DES SPORTS DE COMBAT</h1>
+          <h4 class="sous-titre">WELCOM TO THE FIGHT</h4>
+          <h1>TEAM <span class="highlight">VULCAN</span>, <br>PASSION DES SPORTS DE COMBAT</h1>
           <p>Rejoignez nous dans l'univers des sports de combat avec une équipe professionnelle dédiée à votre progression et à votre épanouissement. Que vous soyez débutant ou confirmé, la team Vulcan vous attend.</p>
           <a href="#" class="btn-rejoindre btn">BOXER !</a>
       </div>

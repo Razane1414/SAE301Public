@@ -12,6 +12,9 @@ body {
     color: white !important;
 }
 
+p{
+    font-size: 16px;
+}
 header {
     margin-top: 25px;
     margin-bottom: 25px;
@@ -85,8 +88,19 @@ header {
     max-width: 50%;
 }
 
+h4.sous-titre {
+    color: #E3B025;
+    font-size: 16px;
+}
 
+.highlight {
+    color: #E3B025;  
+}
 
+.home > .btn-rejoindre{
+    padding: 10px 60px !important;
+
+}
 footer {
     background-color: #252323;
     color: #E3B025;
