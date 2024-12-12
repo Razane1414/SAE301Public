@@ -10,6 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 
+
 <body>
     <header>
         <div class="container">
@@ -39,6 +40,17 @@
             </div>
         </div>
     </header>
+
+    <div class="home">
+        <div class="overlay-text">
+            <h4 class="sous-titre">WELCOM TO THE FIGHT</h4>
+            <h1>TEAM <span class="highlight">VULCAN</span>, <br>PASSION DES SPORTS DE COMBAT</h1>
+            <p>Rejoignez nous dans l'univers des sports de combat avec une équipe professionnelle dédiée à votre
+                progression et à votre épanouissement. Que vous soyez débutant ou confirmé, la team Vulcan vous attend.
+            </p>
+            <a href="#" class="btn-rejoindre btn">BOXER !</a>
+        </div>
+    </div>
 
     <div class="home">
         <div class="overlay-text">
@@ -115,12 +127,11 @@
         </div>
     </div>
 
+    <?php include 'footer.php'; ?>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
-
-<?php include 'footer.php'; ?>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
 
 </html>
