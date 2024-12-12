@@ -29,7 +29,7 @@
 
         <div class="col-4 text-end">
           <a href="#" class="btn-rejoindre btn me-2">Nous rejoindre</a>
-          <a href="#" class="text-dark">
+          <a href="formulaire_connexion.php" class="text-dark">
             <img src="public/images/icone_membre.svg" alt="Espace Membre" class="img-fluid" style="max-width: 40px;">
             </a>
         </div>
