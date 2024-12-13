@@ -1,3 +1,5 @@
+<?php include 'include/header.php'; ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -9,13 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
-
-
 <body>
-
-    <?php include 'include/header.php'; ?>
-
-
     <div class="home">
         <div class="overlay-text">
             <h4 class="sous-titre">WELCOM TO THE FIGHT</h4>
