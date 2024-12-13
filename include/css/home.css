@@ -218,3 +218,70 @@ body {
 .section-text {
     margin-bottom: 20px;
 }
+
+/* Définir l'animation de grossissement avec keyframes */
+@keyframes scaleUp {
+    0% {
+        transform: scale(1); /* Taille initiale */
+    }
+    100% {
+        transform: scale(1.1); /* Taille à la fin de l'animation */
+    }
+}
+
+/* Styles globaux pour les liens de la nav */
+.nav-link {
+    color: white;
+    display: inline-block;       /* Nécessaire pour appliquer la transformation */
+    transition: color 0.3s ease; /* Transition fluide pour la couleur */
+}
+
+.nav-link:hover {
+    color: #E3B025;              
+    animation: scaleUp 0.3s ease forwards; /* Applique l'animation de grossissement avec keyframes */
+}
+
+/* Effet hover smooth sur le bouton "Nous rejoindre" */
+@keyframes scaleButton {
+    0% {
+        transform: scale(1); /* Taille initiale du bouton */
+    }
+    100% {
+        transform: scale(1.1); /* Taille du bouton au survol */
+    }
+}
+
+.btn-rejoindre {
+    background-color: #E3B025;
+    color: white;
+    border: none;
+    border-radius: 0;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    clip-path: polygon(0 0, 100% 0, 100% 50%, 90% 100%, 0 100%);
+    transition: background-color 0.3s ease; /* Transition fluide pour la couleur */
+}
+
+.btn-rejoindre:hover {
+    background-color: #D1A01E; /* Changer la couleur au survol */
+    animation: scaleButton 0.3s ease forwards; /* Applique l'animation de grossissement au survol */
+}
+
+/* Effet hover smooth sur l'image */
+@keyframes scaleImage {
+    0% {
+        transform: scale(1); /* Taille initiale de l'image */
+    }
+    100% {
+        transform: scale(1.05); /* Légère augmentation de la taille de l'image */
+    }
+}
+
+img.img-fluid {
+    transition: transform 0.3s ease; /* Transition fluide pour l'image */
+}
+
+img.img-fluid:hover {
+    animation: scaleImage 0.3s ease forwards; /* Applique l'animation de grossissement de l'image au survol */
+}
