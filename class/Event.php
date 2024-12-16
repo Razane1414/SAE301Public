@@ -54,6 +54,18 @@ class Event
         $stmt = $pdo->prepare("DELETE FROM events WHERE id = ?");
         $stmt->execute([$id]);
     }
+    public static function getEventTypes($pdo)
+    {
+        // Exemple avec un tableau en dur
+        return [
+            'MMA' => 'MMA',
+            'Boxe Thai' => 'Boxe Thai',
+            'Kickboxing' => 'Kickboxing',
+            'JJB' => 'JJB',
+            'Autre' => 'Autre'
+        ];
+
+    }
 }
 
 ?>

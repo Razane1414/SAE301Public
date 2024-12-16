@@ -17,7 +17,13 @@ if (!isset($_SESSION['user_id'])) {
 // Afficher un message de bienvenue avec le nom de l'admin
 echo "Bonjour " . $_SESSION['user_name'] . ", bienvenue sur la page admin!";
 
-// Ajouter un événement
+// Récupérer un événement spécifique pour modification
+$eventToEdit = null;
+if (isset($_GET['edit_id'])) {
+    $eventToEdit = Event::getEventById($pdo, $_GET['edit_id']);
+}
+
+// Ajouter un événement via l'API
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_event'])) {
     $titre = $_POST['titre'];
     $description = $_POST['description'];
@@ -27,13 +33,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_event'])) {
 
     // Vérifier si les données sont valides
     if (!empty($titre) && !empty($description) && !empty($date_event)) {
-        $event = new Event($titre, $description, $date_event, $lieu, $type);
-        $event->save($pdo); // Sauvegarder l'événement dans la base de données
-        echo "<script>alert('Événement ajouté avec succès');</script>";
+        // Préparer les données à envoyer à l'API
+        $data = [
+            'titre' => $titre,
+            'description' => $description,
+            'date_event' => $date_event,
+            'lieu' => $lieu,
+            'type' => $type
+        ];
+
+        // Envoyer une requête POST à l'API
+        $url = 'http://localhost/SAE301Local/api/api_events.php';         
+        $options = [
+            'http' => [
+                'method'  => 'POST',
+                'header'  => 'Content-Type: application/json',
+                'content' => json_encode($data)
+            ]
+        ];
+        $context  = stream_context_create($options);
+        $response = file_get_contents($url, false, $context); // Exécuter la requête
+
+        // Afficher directement la réponse de l'API (message d'erreur ou succès)
+        echo "<script>alert('" . $response . "');</script>";
+    } else {
+        echo "<script>alert('Tous les champs doivent être remplis');</script>";
     }
 }
 
-// Modifier un événement
+// Modifier un événement via l'API
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_event'])) {
     $id = $_POST['id'];
     $titre = $_POST['titre'];
@@ -44,33 +72,61 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_event'])) {
 
     // Vérifier si les données sont valides
     if (!empty($id) && !empty($titre) && !empty($description) && !empty($date_event)) {
-        $event = new Event($titre, $description, $date_event, $lieu, $type);
-        $event->update($pdo, $id); // Mise à jour de l'événement
-        echo "<script>alert('Événement mis à jour avec succès');</script>";
+        // Préparer les données à envoyer à l'API
+        $data = [
+            'id' => $id,
+            'titre' => $titre,
+            'description' => $description,
+            'date_event' => $date_event,
+            'lieu' => $lieu,
+            'type' => $type
+        ];
+
+        // Envoyer une requête PUT à l'API
+        $url = 'http://localhost/SAE301Local/api/api_events.php';         
+        $options = [
+            'http' => [
+                'method'  => 'PUT',
+                'header'  => 'Content-Type: application/json',
+                'content' => json_encode($data)
+            ]
+        ];
+        $context  = stream_context_create($options);
+        $response = file_get_contents($url, false, $context);
+
+        // Afficher directement la réponse de l'API (message d'erreur ou succès)
+        echo "<script>alert('" . $response . "');</script>";
+
         header("Location: espace_admin.php");
-        exit(); // Assurez-vous que le script s'arrête après la redirection
+        exit();
     } else {
         echo "<script>alert('Tous les champs doivent être remplis');</script>";
     }
 }
 
-// Supprimer un événement
+// Supprimer un événement via l'API
 if (isset($_GET['delete_id'])) {
     $eventId = $_GET['delete_id'];
-    Event::delete($pdo, $eventId); // Appeler la méthode pour supprimer l'événement
-    echo "<script>alert('Événement supprimé avec succès');</script>";
+
+    // Envoyer une requête DELETE à l'API
+    $url = 'http://localhost/SAE301Local/api/api_events.php?id=' . $eventId;         
+    $options = [
+        'http' => [
+            'method'  => 'DELETE',
+            'header'  => 'Content-Type: application/json'
+        ]
+    ];
+    $context  = stream_context_create($options);
+    $response = file_get_contents($url, false, $context);
+
+    // Afficher directement la réponse de l'API (message d'erreur ou succès)
+    echo "<script>alert('" . $response . "');</script>";
+
+    header("Location: espace_admin.php");
+    exit();
 }
 
-// Récupérer un événement spécifique si l'ID est passé dans l'URL pour modification
-$event = null;
-if (isset($_GET['id'])) {
-    $event = Event::getEventById($pdo, $_GET['id']);
-}
-
-// Récupérer tous les événements
-$events = Event::getAllEvents($pdo);
-
-
+// Ajouter un adhérent via l'API
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_adherent'])) {
     $nom = $_POST['nom'];
     $prenom = $_POST['prenom'];
@@ -93,6 +149,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_adherent'])) {
         echo "<script>alert('Tous les champs doivent être remplis');</script>";
     }
 }
+
+// Récupérer tous les événements
+$events = Event::getAllEvents($pdo);
 
 ?>
 
@@ -129,7 +188,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_adherent'])) {
         </div>
         <div>
             <label for="type">Type</label>
-            <input type="text" id="type" name="type">
+            <select id="type" name="type" required>
+                <?php
+                // Récupérer les types d'événements depuis la base de données via la méthode de la classe Event
+                $eventTypes = Event::getEventTypes($pdo);
+                foreach ($eventTypes as $value => $label) {
+                    echo "<option value=\"$value\">$label</option>";
+                }
+                ?>
+            </select>
         </div>
         <button type="submit" name="add_event">Ajouter</button>
     </form>
@@ -156,7 +223,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_adherent'])) {
                     <td><?= $event['lieu'] ?></td>
                     <td><?= $event['type'] ?></td>
                     <td>
-                        <a href="edit_event.php?id=<?= $event['id'] ?>">Modifier</a>
+                        <a href="?edit_id=<?= $event['id'] ?>">Modifier</a>
                         <a href="?delete_id=<?= $event['id'] ?>"
                             onclick="return confirm('Voulez-vous vraiment supprimer cet événement ?')">Supprimer</a>
                     </td>
@@ -165,6 +232,43 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_adherent'])) {
         </tbody>
     </table>
 
+    <?php if ($eventToEdit): ?>
+        <h2>Modifier l'événement</h2>
+        <form method="POST">
+            <div>
+                <label for="titre">Titre</label>
+                <input type="text" id="titre" name="titre" value="<?= $eventToEdit['titre'] ?>" required>
+            </div>
+            <div>
+                <label for="description">Description</label>
+                <textarea id="description" name="description" required><?= $eventToEdit['description'] ?></textarea>
+            </div>
+            <div>
+                <label for="date_event">Date</label>
+                <input type="date" id="date_event" name="date_event" value="<?= $eventToEdit['date_event'] ?>" required>
+            </div>
+            <div>
+                <label for="lieu">Lieu</label>
+                <input type="text" id="lieu" name="lieu" value="<?= $eventToEdit['lieu'] ?>">
+            </div>
+            <div>
+                <label for="type">Type</label>
+                <select id="type" name="type" required>
+                    <?php
+                    $eventTypes = Event::getEventTypes($pdo);
+                    foreach ($eventTypes as $value => $label) {
+                        $selected = ($value == $eventToEdit['type']) ? 'selected' : '';
+                        echo "<option value=\"$value\" $selected>$label</option>";
+                    }
+                    ?>
+                </select>
+            </div>
+            <input type="hidden" name="id" value="<?= $eventToEdit['id'] ?>">
+            <button type="submit" name="update_event">Mettre à jour</button>
+        </form>
+    <?php endif; ?>
+
+    <!-- Formulaire d'ajout d'adhérent -->
     <h2>Ajouter un adhérent</h2>
     <form method="POST">
         <div>
@@ -190,19 +294,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_adherent'])) {
         <div>
             <label for="sexe">Sexe</label>
             <select id="sexe" name="sexe" required>
-                <option value="M">Masculin</option>
-                <option value="F">Féminin</option>
+                <option value="M">Homme</option>
+                <option value="F">Femme</option>
             </select>
         </div>
-        <button type="submit" name="add_adherent">Ajouter</button>
+        <button type="submit" name="add_adherent">Ajouter un adhérent</button>
     </form>
-
 
 </body>
 
 </html>
-
-<?php
-// Inclure le footer
-include '../include/footer.php';
-?>
