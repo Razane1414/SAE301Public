@@ -34,6 +34,7 @@
                     <a href="#"><i class="footer-icon bi bi-chevron-right"></i> Avertissement légal</a>
                     <a href="#"><i class="footer-icon bi bi-chevron-right"></i> Soutien</a>
                     <a href="#"><i class="footer-icon bi bi-chevron-right"></i> FAQ</a>
+                    <a href="admin/espace_admin.php"><i class="footer-icon bi bi-chevron-right"></i> Espace administrateur</a>
                 </div>
             </div>
 
