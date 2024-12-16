@@ -171,7 +171,6 @@ body {
 
 .image-container img {
     width: 100%;
-    max-width: 400px;
     height: auto;
     position: relative;
     z-index: 1;
