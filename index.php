@@ -9,38 +9,6 @@
     <link rel="stylesheet" href="include/css/home.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <style>
-        /* Réinitialisation des marges et paddings */
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-        }
-
-        /* Contenu principal ajusté pour occuper toute la hauteur */
-        .home {
-            min-height: calc(100vh - 50px);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            position: relative;
-        }
-
-        .overlay-text {
-            text-align: left;
-            position: absolute;
-            top: 50%;
-            left: 10%;
-            transform: translateY(-50%);
-            color: #fff;
-        }
-
-        footer {
-            margin: 0;
-            padding: 0;
-        }
-    </style>
 </head>
 
 <body>
