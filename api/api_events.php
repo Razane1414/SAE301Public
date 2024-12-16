@@ -10,6 +10,10 @@ require_once('../class/Event.php');
 $request_method = $_SERVER['REQUEST_METHOD'];
 
 switch ($request_method) {
+    case 'GET':
+        require_once('get_event.php'); // Inclure le fichier de gestion GET
+        break;
+
     case 'POST':
         require_once('post_event.php'); // Inclure le fichier de gestion POST
         break;
