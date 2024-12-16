@@ -1,35 +1,31 @@
-<?php
-require_once '../config/config.php';
-
-include '../include/header.php';
-
-session_start();
-
-// Vérifier si l'utilisateur est connecté
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php"); // Redirige vers la page de connexion si l'utilisateur n'est pas connecté
-    exit();
-}
-
-// Afficher un message de bienvenue avec le nom de l'utilisateur
-echo "Bonjour " . $_SESSION['user_name'] . ", bienvenue !";
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Espace Admin - Gestion des événements</title>
-    <link rel="stylesheet" href="../include/css/home.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="../include/css/calendrier.css">
+    <link rel="stylesheet" href="../include/css/home.css">
+    <title>Gestion des événements</title>
 </head>
 
 <body>
+    <?php
+    require_once '../config/config.php';
+    include '../include/header.php';
+    session_start();
 
+    // Vérifier si l'utilisateur est connecté
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: login.php"); // Redirige vers la page de connexion si l'utilisateur n'est pas connecté
+        exit();
+    }
+
+    // Afficher un message de bienvenue avec le nom de l'utilisateur
+    echo "<p>Bonjour " . htmlspecialchars($_SESSION['user_name']) . ", bienvenue !</p>";
+    ?>
     <div class="container py-5">
         <div class="header">Événement</div>
         <div class="content-section">
@@ -40,7 +36,6 @@ echo "Bonjour " . $_SESSION['user_name'] . ", bienvenue !";
                     idéale pour s'initier à cet art martial et en apprendre les bases dans un cadre encadré et convivial
                     réalisé le Lundi 06.
                 </p>
-
                 <div class="trainer-card">
                     <img src="../include/images/visage.jpg" alt="Photo de profil">
                     <div class="trainer-card-content">
@@ -54,12 +49,10 @@ echo "Bonjour " . $_SESSION['user_name'] . ", bienvenue !";
                         </ul>
                     </div>
                 </div>
-
                 <div class="button-container">
                     <button class="btn-register">S'inscrire à l'événement</button>
                 </div>
             </div>
-
             <div class="image-section">
                 <div class="image-container">
                     <img src="../include/images/jjb.png" alt="JJB Stage">
@@ -69,13 +62,8 @@ echo "Bonjour " . $_SESSION['user_name'] . ", bienvenue !";
             </div>
         </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+    <?php include '../include/footer.php'; ?>
 </body>
 
 </html>
-
-<?php
-include '../include/footer.php';
-?>
