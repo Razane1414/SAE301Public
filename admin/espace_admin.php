@@ -14,9 +14,6 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-// Afficher un message de bienvenue avec le nom de l'admin
-echo "Bonjour " . $_SESSION['user_name'] . ", bienvenue sur la page admin!";
-
 // Récupérer un événement spécifique pour modification
 $eventToEdit = null;
 if (isset($_GET['edit_id'])) {
@@ -162,6 +159,7 @@ $events = Event::getAllEvents($pdo);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion des événements</title>
+    <link rel="stylesheet" href="../include/css/admin.css">
 </head>
 
 <body>
