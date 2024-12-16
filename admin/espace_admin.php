@@ -160,12 +160,18 @@ $events = Event::getAllEvents($pdo);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion des événements</title>
     <link rel="stylesheet" href="../include/css/admin.css">
-    <link rel="stylesheet" href="../include/css/calendrier.css"/>
-    <script src="../include/js/calendrier.js" defer></script>
+    <link rel="stylesheet" href="../include/css/calendrier.css">
+
+    <!-- FullCalendar -->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+
+    <script src="../include/js/calendrier.js"></script>
 </head>
+
 
 <body>
     <h1>Gestion des événements</h1>
+    <div id="calendar"></div>
 
     <h2>Ajouter un événement</h2>
     <form method="POST">

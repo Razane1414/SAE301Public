@@ -1,0 +1,8 @@
+/* Redimensionner le conteneur du calendrier */
+#calendar {
+    max-width: 900px;  
+    height: 500px; 
+    margin: 0 auto; 
+    font-size: 14px;  
+}
+
