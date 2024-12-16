@@ -160,12 +160,13 @@ $events = Event::getAllEvents($pdo);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion des événements</title>
     <link rel="stylesheet" href="../include/css/admin.css">
+    <link rel="stylesheet" href="../include/css/calendrier.css"/>
+    <script src="../include/js/calendrier.js" defer></script>
 </head>
 
 <body>
     <h1>Gestion des événements</h1>
 
-    <!-- Formulaire d'ajout d'événement -->
     <h2>Ajouter un événement</h2>
     <form method="POST">
         <div>
