@@ -3,6 +3,7 @@
 // Inclure la configuration pour la connexion à la base de données
 require_once '../config/config.php';
 require_once '../class/Event.php'; 
+require_once '../class/Adherent.php';
 
 // Démarrer la session
 session_start();
@@ -68,6 +69,30 @@ if (isset($_GET['id'])) {
 
 // Récupérer tous les événements
 $events = Event::getAllEvents($pdo);
+
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_adherent'])) {
+    $nom = $_POST['nom'];
+    $prenom = $_POST['prenom'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $date_naissance = $_POST['date_naissance'];
+    $sexe = $_POST['sexe'];
+
+    // Vérifier si les données sont valides
+    if (!empty($nom) && !empty($prenom) && !empty($email) && !empty($password) && !empty($date_naissance) && !empty($sexe)) {
+        if (!Adherent::emailExists($pdo, $email)) {
+            // Ajouter les nouveaux paramètres dans le constructeur ou une méthode d'initialisation
+            $adherent = new Adherent($nom, $prenom, $email, $password, $date_naissance, $sexe);
+            $adherent->save($pdo); // Sauvegarder l'adhérent dans la base de données
+            echo "<script>alert('Adhérent ajouté avec succès');</script>";
+        } else {
+            echo "<script>alert('Cet email est déjà utilisé');</script>";
+        }
+    } else {
+        echo "<script>alert('Tous les champs doivent être remplis');</script>";
+    }
+}
 
 ?>
 
@@ -136,6 +161,40 @@ $events = Event::getAllEvents($pdo);
             <?php endforeach; ?>
         </tbody>
     </table>
+
+    <h2>Ajouter un adhérent</h2>
+    <form method="POST">
+        <div>
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" name="nom" required>
+        </div>
+        <div>
+            <label for="prenom">Prénom</label>
+            <input type="text" id="prenom" name="prenom" required>
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+            <label for="password">Mot de passe</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div>
+            <label for="date_naissance">Date de naissance</label>
+            <input type="date" id="date_naissance" name="date_naissance" required>
+        </div>
+        <div>
+            <label for="sexe">Sexe</label>
+            <select id="sexe" name="sexe" required>
+                <option value="M">Masculin</option>
+                <option value="F">Féminin</option>
+            </select>
+        </div>
+        <button type="submit" name="add_adherent">Ajouter</button>
+    </form>
+
+
 </body>
 </html>
 

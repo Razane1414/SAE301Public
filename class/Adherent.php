@@ -7,21 +7,29 @@ class Adherent
     private $prenom;
     private $email;
     private $password;
+    private $date_naissance;
+    private $sexe;
 
-    // Constructeur pour un adhérent
-    public function __construct($nom, $prenom, $email, $password)
+    // Constructeur mis à jour
+    public function __construct($nom, $prenom, $email, $password, $date_naissance, $sexe)
     {
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->email = $email;
-        $this->password = password_hash($password, PASSWORD_BCRYPT); // Hachage du mdp pour la securité
+        $this->password = password_hash($password, PASSWORD_BCRYPT); // Hachage sécurisé
+        $this->date_naissance = $date_naissance;
+        $this->sexe = $sexe;
     }
 
-    // Méthode pour enregistrer un adhérent dans la base de données
+    // Méthode pour enregistrer un adhérent
     public function save($pdo)
     {
-        $stmt = $pdo->prepare("INSERT INTO adherents (nom, prenom, email, password) VALUES (?, ?, ?, ?)");
-        $stmt->execute([$this->nom, $this->prenom, $this->email, $this->password]);
+        try {
+            $stmt = $pdo->prepare("INSERT INTO adherents (nom, prenom, email, password, date_naissance, sexe) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$this->nom, $this->prenom, $this->email, $this->password, $this->date_naissance, $this->sexe]);
+        } catch (PDOException $e) {
+            echo "Erreur : " . $e->getMessage();
+        }
     }
 
     // Méthode pour vérifier si l'email existe déjà
@@ -44,6 +52,4 @@ class Adherent
         return $this->nom;
     }
 }
-
-
 ?>
