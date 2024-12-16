@@ -2,14 +2,14 @@
 
 // Inclure la configuration pour la connexion à la base de données
 require_once '../config/config.php';
-require_once '../class/Event.php'; 
+require_once '../class/Event.php';
 
 // Démarrer la session
 session_start();
 
 // Vérifier si l'utilisateur est connecté
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login_admin.php"); 
+    header("Location: login_admin.php");
     exit();
 }
 
@@ -73,11 +73,13 @@ $events = Event::getAllEvents($pdo);
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion des événements</title>
 </head>
+
 <body>
     <h1>Gestion des événements</h1>
 
@@ -130,13 +132,15 @@ $events = Event::getAllEvents($pdo);
                     <td><?= $event['type'] ?></td>
                     <td>
                         <a href="edit_event.php?id=<?= $event['id'] ?>">Modifier</a>
-                        <a href="?delete_id=<?= $event['id'] ?>" onclick="return confirm('Voulez-vous vraiment supprimer cet événement ?')">Supprimer</a>
+                        <a href="?delete_id=<?= $event['id'] ?>"
+                            onclick="return confirm('Voulez-vous vraiment supprimer cet événement ?')">Supprimer</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
 </body>
+
 </html>
 
 <?php

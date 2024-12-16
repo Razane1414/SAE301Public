@@ -1,5 +1,3 @@
-<?php include 'include/header.php'; ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -10,8 +8,88 @@
     <link rel="stylesheet" href="include/css/home.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        /* Réinitialisation des marges et paddings */
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        /* Contenu principal ajusté pour occuper toute la hauteur */
+        .home {
+            min-height: calc(100vh - 50px);
+            /* Ajustez 50px à la hauteur de votre footer si nécessaire */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .overlay-text {
+            text-align: left;
+            /* Alignement à gauche */
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            /* Ajustez selon vos besoins */
+            transform: translateY(-50%);
+            color: #fff;
+            /* Assurez une lisibilité si un fond est appliqué */
+        }
+
+        .overlay-text h1 {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .overlay-text h4 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .overlay-text p {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            max-width: 600px;
+            /* Limiter la largeur pour une bonne lisibilité */
+        }
+
+        footer {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
 </head>
+
 <body>
+    <header>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-3">
+                    <img src="include/images/Logo1.png" alt="Logo" class="img-fluid" style="max-width: 100px;">
+                </div>
+                <div class="col-6 text-center">
+                    <nav class="nav justify-content-center">
+                        <a class="nav-link mx-2 active" href="#">LE CLUB</a>
+                        <a class="nav-link mx-2" href="#">SPÉCIALITÉS</a>
+                        <a class="nav-link mx-2" href="#">AVIS CLIENTS</a>
+                        <a class="nav-link mx-2" href="#">BLOG</a>
+                    </nav>
+                </div>
+                <div class="col-3 d-flex justify-content-end align-items-center flex-wrap">
+                    <a href="#" class="btn-rejoindre btn me-2 mb-2 mb-sm-0">Nous rejoindre</a>
+                    <a href="adherents/login.php" class="text-dark">
+                        <img src="include/images/icone_membre.svg" alt="Espace Membre" class="img-fluid"
+                            style="max-width: 40px;">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
     <div class="home">
         <div class="overlay-text">
             <h4 class="sous-titre">WELCOM TO THE FIGHT</h4>
@@ -25,15 +103,13 @@
 
     <div class="container my-5">
         <div class="row">
-            <!-- Image Section -->
             <div class="col-md-6">
                 <div class="image-container">
                     <div class="yellow-corner-top"></div>
-                    <img src="include\images\Fighter.jpg" alt="MMA Fighter">
+                    <img src="include/images/Fighter.jpg" alt="MMA Fighter">
                     <div class="yellow-corner-bottom"></div>
                 </div>
             </div>
-            <!-- Content Section -->
             <div class="col-md-6 content">
                 <p class="text-uppercase text-warning mb-2">Le Club</p>
                 <h1 class="fw-bold">Bienvenue &agrave; la Team Vulcan, le club de MMA r&eacute;f&eacute;rence en

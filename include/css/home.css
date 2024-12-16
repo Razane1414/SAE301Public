@@ -171,7 +171,6 @@ body {
 
 .image-container img {
     width: 100%;
-    max-width: 400px;
     height: auto;
     position: relative;
     z-index: 1;
@@ -285,3 +284,4 @@ img.img-fluid {
 img.img-fluid:hover {
     animation: scaleImage 0.3s ease forwards; /* Applique l'animation de grossissement de l'image au survol */
 }
+
