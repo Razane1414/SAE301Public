@@ -36,6 +36,7 @@ button:hover {
     color: darkred;
 }
 
+
 /* Centrer le titre au milieu de la page */
 .title {
     text-align: center;
@@ -365,3 +366,4 @@ button:hover {
         font-size: 48px;
     }
 }
+

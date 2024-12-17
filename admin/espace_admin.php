@@ -170,9 +170,7 @@ $events = Event::getAllEvents($pdo);
 
 
 <body>
-<h1 class="title">
-    <span class="highlight">Calendrier</span> des événements du club 
-</h1>
+
     <div id="calendar"></div>
 
     <h2>Ajouter un événement</h2>
@@ -245,6 +243,7 @@ $events = Event::getAllEvents($pdo);
     <?php endif; ?>
 
     <!-- Formulaire d'ajout d'adhérent -->
+
  
     <div id="section-ajouter-adherent">
     <!-- Titre de la section -->
@@ -282,10 +281,9 @@ $events = Event::getAllEvents($pdo);
                 <!-- Bouton pour soumettre le formulaire -->
                 <button type="submit" name="add_adherent" class="btn-ajouter">Ajouter un adhérent</button>
             </form>
-        </div>
-    </div>
-</div>
 
+          
+    
 
 </body>
 
