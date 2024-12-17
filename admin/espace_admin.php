@@ -166,45 +166,55 @@ $events = Event::getAllEvents($pdo);
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
 
     <script src="../include/js/calendrier.js"></script>
+    <script src="../include/js/admin.js"></script>
 </head>
 
 
 <body>
     <h1>Gestion des événements</h1>
     <div id="calendar"></div>
+    <!-- Bouton Plus avec PNG -->
+    <button id="btn-plus" type="button">
+        <img src="../include/images/plus.png" alt="Plus" width="24" height="24">
+    </button>
 
-    <h2>Ajouter un événement</h2>
-    <form method="POST">
-        <div>
-            <label for="titre">Titre</label>
-            <input type="text" id="titre" name="titre" required>
-        </div>
-        <div>
-            <label for="description">Description</label>
-            <textarea id="description" name="description" required></textarea>
-        </div>
-        <div>
-            <label for="date_event">Date</label>
-            <input type="date" id="date_event" name="date_event" required>
-        </div>
-        <div>
-            <label for="lieu">Lieu</label>
-            <input type="text" id="lieu" name="lieu">
-        </div>
-        <div>
-            <label for="type">Type</label>
-            <select id="type" name="type" required>
-                <?php
-                // Récupérer les types d'événements depuis la base de données via la méthode de la classe Event
-                $eventTypes = Event::getEventTypes($pdo);
-                foreach ($eventTypes as $value => $label) {
-                    echo "<option value=\"$value\">$label</option>";
-                }
-                ?>
-            </select>
-        </div>
-        <button type="submit" name="add_event">Ajouter</button>
-    </form>
+
+    <!-- Formulaire caché initialement -->
+    <div id="add-event-form" style="display:none;">
+        <h2>Ajouter un événement</h2>
+        <form method="POST">
+            <div>
+                <label for="titre">Titre</label>
+                <input type="text" id="titre" name="titre" required>
+            </div>
+            <div>
+                <label for="description">Description</label>
+                <textarea id="description" name="description" required></textarea>
+            </div>
+            <div>
+                <label for="date_event">Date</label>
+                <input type="date" id="date_event" name="date_event" required>
+            </div>
+            <div>
+                <label for="lieu">Lieu</label>
+                <input type="text" id="lieu" name="lieu">
+            </div>
+            <div>
+                <label for="type">Type</label>
+                <select id="type" name="type" required>
+                    <?php
+                    // Récupérer les types d'événements depuis la base de données via la méthode de la classe Event
+                    $eventTypes = Event::getEventTypes($pdo);
+                    foreach ($eventTypes as $value => $label) {
+                        echo "<option value=\"$value\">$label</option>";
+                    }
+                    ?>
+                </select>
+            </div>
+            <button type="submit" name="add_event">Ajouter</button>
+        </form>
+    </div>
+
 
     <?php if ($eventToEdit): ?>
         <h2>Modifier l'événement</h2>
