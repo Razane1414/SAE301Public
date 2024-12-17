@@ -170,7 +170,10 @@ $events = Event::getAllEvents($pdo);
 
 
 <body>
-    <h1>Gestion des événements</h1>
+<h1 class="title">
+    <span class="highlight">Calendrier</span> des événements du club 
+
+</h1>
     <div id="calendar"></div>
 
     <h2>Ajouter un événement</h2>
@@ -243,37 +246,34 @@ $events = Event::getAllEvents($pdo);
     <?php endif; ?>
 
     <!-- Formulaire d'ajout d'adhérent -->
-    <h2>Ajouter un adhérent</h2>
-    <form method="POST">
-        <div>
-            <label for="nom">Nom</label>
-            <input type="text" id="nom" name="nom" required>
+    <div id="section-ajouter-adherent">
+    <!-- Titre de la section -->
+    <h1 class="titre-section">Ajouter un adhérent</h1>
+
+    <!-- Carte contenant le formulaire -->
+    <div class="carte-formulaire">
+        <!-- En-tête de la carte -->
+        <div class="carte-header">Formulaire d'ajout</div>
+
+        <!-- Corps de la carte (formulaire) -->
+        <div class="carte-corps">
+            <form>
+                <!-- Champ pour le nom de l'adhérent -->
+                <input type="text" class="champ-formulaire" placeholder="Nom de l'adhérent" />
+
+                <!-- Champ pour l'email -->
+                <input type="email" class="champ-formulaire" placeholder="Email" />
+
+                <!-- Champ pour le téléphone -->
+                <input type="text" class="champ-formulaire" placeholder="Téléphone" />
+
+                <!-- Bouton pour soumettre le formulaire -->
+                <button type="submit" class="btn-ajouter">Ajouter un adhérent</button>
+            </form>
         </div>
-        <div>
-            <label for="prenom">Prénom</label>
-            <input type="text" id="prenom" name="prenom" required>
-        </div>
-        <div>
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
-        </div>
-        <div>
-            <label for="password">Mot de passe</label>
-            <input type="password" id="password" name="password" required>
-        </div>
-        <div>
-            <label for="date_naissance">Date de naissance</label>
-            <input type="date" id="date_naissance" name="date_naissance" required>
-        </div>
-        <div>
-            <label for="sexe">Sexe</label>
-            <select id="sexe" name="sexe" required>
-                <option value="M">Homme</option>
-                <option value="F">Femme</option>
-            </select>
-        </div>
-        <button type="submit" name="add_adherent">Ajouter un adhérent</button>
-    </form>
+    </div>
+</div>
+
 
 </body>
 
