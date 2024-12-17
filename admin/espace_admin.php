@@ -160,12 +160,19 @@ $events = Event::getAllEvents($pdo);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion des événements</title>
     <link rel="stylesheet" href="../include/css/admin.css">
+    <link rel="stylesheet" href="../include/css/calendrier.css">
+
+    <!-- FullCalendar -->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+
+    <script src="../include/js/calendrier.js"></script>
 </head>
+
 
 <body>
     <h1>Gestion des événements</h1>
+    <div id="calendar"></div>
 
-    <!-- Formulaire d'ajout d'événement -->
     <h2>Ajouter un événement</h2>
     <form method="POST">
         <div>
@@ -198,37 +205,6 @@ $events = Event::getAllEvents($pdo);
         </div>
         <button type="submit" name="add_event">Ajouter</button>
     </form>
-
-    <!-- Liste des événements -->
-    <h2>Liste des événements</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Titre</th>
-                <th>Description</th>
-                <th>Date</th>
-                <th>Lieu</th>
-                <th>Type</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($events as $event): ?>
-                <tr>
-                    <td><?= $event['titre'] ?></td>
-                    <td><?= $event['description'] ?></td>
-                    <td><?= $event['date_event'] ?></td>
-                    <td><?= $event['lieu'] ?></td>
-                    <td><?= $event['type'] ?></td>
-                    <td>
-                        <a href="?edit_id=<?= $event['id'] ?>">Modifier</a>
-                        <a href="?delete_id=<?= $event['id'] ?>"
-                            onclick="return confirm('Voulez-vous vraiment supprimer cet événement ?')">Supprimer</a>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
 
     <?php if ($eventToEdit): ?>
         <h2>Modifier l'événement</h2>

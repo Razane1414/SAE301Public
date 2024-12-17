@@ -1,127 +1,37 @@
-        body {
-            background-color: #111111 !important;
-            color: #ffffff !important;
-            font-family: Arial, sans-serif;
-        }
+/* Redimensionner le conteneur du calendrier */
+#calendar {
+    max-width: 900px;  
+    height: 500px; 
+    margin: 0 auto; 
+    font-size: 14px;  
+}
 
-        .header {
-            color: #ffc700;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-        }
+/* Changer le fond de la cellule qui contient un événement */
+.fc-day.fc-day-has-event {
+    background-color: rgb(255, 166, 0);  /* Changer la couleur selon votre préférence */
+}
 
-        .event-title {
-            font-size: 2rem;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
 
-        .description {
-            margin-bottom: 20px;
-        }
 
-        .trainer-card {
-            background-color: #ffc700;
-            color: #111111;
-            padding: 20px;
-            margin-right: 85px;
-            border-radius: 5px;
-            box-shadow: 5px 5px 0px #111111;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            clip-path: polygon(0 0, 100% 0, 100% 75%, 90% 100%, 0 100%);
+/* Style du bouton sans fond */
+button {
+    background: transparent;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
 
-        }
+button:hover {
+    color: darkred;
+}
 
-        .trainer-card img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-top: 0;
-        }
-
-        .trainer-card-content {
-            flex: 1;
-        }
-
-        .trainer-card h4 {
-            margin-bottom: 10px;
-        }
-
-        .btn-register {
-            background-color: #95ac4a;
-            color: #ffffff;
-            font-weight: bold;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            text-transform: uppercase;
-            clip-path: polygon(0 0, 100% 0, 100% 70%, 95% 100%, 0 100%);
-
-        }
-
-        .btn-register:hover {
-            background-color: #7d9140;
-        }
-
-        .image-container {
-            position: relative;
-            max-width: 500px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .image-container img {
-            width: 100%;
-            display: block;
-            border-radius: 5px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .image-container .corner {
-            position: absolute;
-            width: 150px;
-            height: 150px;
-            background-color: #ffc700;
-            z-index: 0;
-        }
-
-        .corner-top-left {
-            top: -10px;
-            left: -10px;
-        }
-
-        .corner-bottom-right {
-            bottom: -10px;
-            right: -10px;
-        }
-
-        .content-section {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: flex-start;
-            gap: 20px;
-        }
-
-        .text-section {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .image-section {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .button-container {
-            text-align: left;
-            margin-top: 20px;
-        }
-
-        
+/* Personnalisation de la croix de suppression */
+.delete-event {
+    font-size: 18px;
+    color: red;
+    text-decoration: none;
+}
+.delete-event:hover {
+    color: darkred;
+}
