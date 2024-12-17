@@ -206,37 +206,6 @@ $events = Event::getAllEvents($pdo);
         <button type="submit" name="add_event">Ajouter</button>
     </form>
 
-    <!-- Liste des événements -->
-    <h2>Liste des événements</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Titre</th>
-                <th>Description</th>
-                <th>Date</th>
-                <th>Lieu</th>
-                <th>Type</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($events as $event): ?>
-                <tr>
-                    <td><?= $event['titre'] ?></td>
-                    <td><?= $event['description'] ?></td>
-                    <td><?= $event['date_event'] ?></td>
-                    <td><?= $event['lieu'] ?></td>
-                    <td><?= $event['type'] ?></td>
-                    <td>
-                        <a href="?edit_id=<?= $event['id'] ?>">Modifier</a>
-                        <a href="?delete_id=<?= $event['id'] ?>"
-                            onclick="return confirm('Voulez-vous vraiment supprimer cet événement ?')">Supprimer</a>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-
     <?php if ($eventToEdit): ?>
         <h2>Modifier l'événement</h2>
         <form method="POST">

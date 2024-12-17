@@ -6,3 +6,32 @@
     font-size: 14px;  
 }
 
+/* Changer le fond de la cellule qui contient un événement */
+.fc-day.fc-day-has-event {
+    background-color: rgb(255, 166, 0);  /* Changer la couleur selon votre préférence */
+}
+
+
+
+/* Style du bouton sans fond */
+button {
+    background: transparent;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    color: darkred;
+}
+
+/* Personnalisation de la croix de suppression */
+.delete-event {
+    font-size: 18px;
+    color: red;
+    text-decoration: none;
+}
+.delete-event:hover {
+    color: darkred;
+}
