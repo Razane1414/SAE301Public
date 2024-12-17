@@ -239,13 +239,13 @@ button:hover {
 }
 /* Ciblage spécifique de la section "Ajouter un adhérent" */
 #section-ajouter-adherent {
-    background-color: #252323; /* Fond sombre spécifique à cette section */
+    background-color: #333333; /* Change la couleur de fond ici */
     color: white;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
+    height: 150vh;
     text-align: center;
     padding: 20px;
 }
@@ -262,14 +262,16 @@ button:hover {
 
 /* Card (formulaire) */
 #section-ajouter-adherent .carte-formulaire {
-    background-color: #000;
+    background-color: #000000; /* Change la couleur de fond de la carte ici */
     border: none;
     border-radius: 20px;
     width: 100%;
     max-width: 600px;
+    min-height: 700px; /* Ajout pour augmenter la hauteur minimale */
     padding: 50px;
-    overflow: hidden;
+    overflow-y: auto; /* Ajout d'un scroll si nécessaire */
 }
+
 
 /* En-tête de la carte */
 #section-ajouter-adherent .carte-header {

@@ -172,7 +172,6 @@ $events = Event::getAllEvents($pdo);
 <body>
 <h1 class="title">
     <span class="highlight">Calendrier</span> des événements du club 
-
 </h1>
     <div id="calendar"></div>
 
@@ -246,6 +245,7 @@ $events = Event::getAllEvents($pdo);
     <?php endif; ?>
 
     <!-- Formulaire d'ajout d'adhérent -->
+ 
     <div id="section-ajouter-adherent">
     <!-- Titre de la section -->
     <h1 class="titre-section">Ajouter un adhérent</h1>
@@ -257,18 +257,30 @@ $events = Event::getAllEvents($pdo);
 
         <!-- Corps de la carte (formulaire) -->
         <div class="carte-corps">
-            <form>
-                <!-- Champ pour le nom de l'adhérent -->
-                <input type="text" class="champ-formulaire" placeholder="Nom de l'adhérent" />
-
-                <!-- Champ pour l'email -->
-                <input type="email" class="champ-formulaire" placeholder="Email" />
-
-                <!-- Champ pour le téléphone -->
-                <input type="text" class="champ-formulaire" placeholder="Téléphone" />
-
+            <form method="POST">
+                <div>
+                <input type="text" class="champ-formulaire" id="nom" name="nom" placeholder="Nom de l'adhérent" required>
+                </div>
+                <div>
+                <input type="text" class="champ-formulaire" id="prenom" name="prenom" placeholder="Prenom de l'adhérent" required>
+                </div>
+                <div>
+                <input type="email" class="champ-formulaire" id="email" name="email" placeholder="Email" required>
+                </div>
+                <div>
+                <input type="password" class="champ-formulaire" id="password" name="password" placeholder="Mot de passe" required>
+                </div>
+                <div>
+                <input type="date" class="champ-formulaire" id="date_naissance" name="date_naissance" placeholder="Mot de passe" required>
+                </div>
+                <div>
+                <select class="champ-formulaire" id="sexe" name="sexe" required>
+                    <option value="M">Homme</option>
+                    <option value="F">Femme</option> 
+                    </select>
+                </div>
                 <!-- Bouton pour soumettre le formulaire -->
-                <button type="submit" class="btn-ajouter">Ajouter un adhérent</button>
+                <button type="submit" name="add_adherent" class="btn-ajouter">Ajouter un adhérent</button>
             </form>
         </div>
     </div>
