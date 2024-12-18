@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
             content.innerHTML = '<span>' + info.event.title + '</span>' + deleteLink;
             return { domNodes: [content] };
         },
+        
 
         // Ajouter un gestionnaire pour le clic sur un événement
         eventClick: function(info) {

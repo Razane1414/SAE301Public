@@ -5,6 +5,7 @@ require_once '../config/config.php';
 require_once '../class/Event.php'; 
 require_once '../class/Adherent.php';
 
+
 // Démarrer la session
 session_start();
 
@@ -167,6 +168,8 @@ $events = Event::getAllEvents($pdo);
 
     <script src="../include/js/calendrier.js"></script>
     <script src="../include/js/admin.js"></script>
+    <script src="../include/js/modal.js"></script>
+
 </head>
 
 
@@ -293,8 +296,20 @@ $events = Event::getAllEvents($pdo);
                 <!-- Bouton pour soumettre le formulaire -->
                 <button type="submit" name="add_adherent" class="btn-ajouter">Ajouter un adhérent</button>
             </form>
+        </div>
+    </div>
 
-          
+    <!-- Fenêtre modale de confirmation -->
+    <div id="confirmation-modal" class="modal">
+        <div class="modal-content">
+            <span id="close-modal" class="close">&times;</span>
+            <h2>Confirmation de suppression</h2>
+            <p>Êtes-vous sûr de vouloir supprimer cet événement ?</p>
+            <button id="confirm-delete" class="btn btn-danger">Supprimer</button>
+            <button id="cancel-delete" class="btn btn-secondary">Annuler</button>
+        </div>
+    </div>
+
     
 
 </body>
