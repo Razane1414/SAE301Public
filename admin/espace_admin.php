@@ -248,7 +248,9 @@ $events = Event::getAllEvents($pdo);
  
     <div id="section-ajouter-adherent">
     <!-- Titre de la section -->
-    <h1 class="titre-section">Ajouter un adhérent</h1>
+    <h1 class="titlee">
+    <span class="highlight">Ajouter</span> un adhérent
+</h1>
 
     <!-- Carte contenant le formulaire -->
     <div class="carte-formulaire">

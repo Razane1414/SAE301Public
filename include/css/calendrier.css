@@ -39,13 +39,22 @@ button:hover {
 /* Centrer le titre au milieu de la page */
 .title {
     text-align: center;
-    font-size: 36px; /* Taille du texte */
+    font-size: 50px; /* Taille du texte */
     font-weight: bold;
     margin-top: 20px; /* Espace en haut */
 }
-
 /* Changer la couleur du premier mot en jaune */
 .title .highlight {
+    color: #f7c800; /* Jaune */
+}
+.titlee {
+    text-align: center;
+    font-size: 50px; /* Taille du texte */
+    font-weight: bold;
+    margin-top: 20px; /* Espace en haut */
+    margin-bottom: 20px;
+}
+.titlee .highlight {
     color: #f7c800; /* Jaune */
 }
 
@@ -239,7 +248,7 @@ button:hover {
 }
 /* Ciblage spécifique de la section "Ajouter un adhérent" */
 #section-ajouter-adherent {
-    background-color: #333333; /* Change la couleur de fond ici */
+    background-color: #252323; /* Change la couleur de fond ici */
     color: white;
     display: flex;
     justify-content: center;
@@ -286,40 +295,52 @@ button:hover {
     padding: 30px;
 }
 
-/* Personnalisation des champs du formulaire */
-#section-ajouter-adherent .champ-formulaire {
+/* Personnalisation des champs de formulaire pour inclure select et date */
+#section-ajouter-adherent .champ-formulaire,
+#section-ajouter-adherent select.champ-formulaire,
+#section-ajouter-adherent input[type="date"].champ-formulaire {
     border-radius: 15px;
     margin-bottom: 15px;
     background-color: #252323;
-    color: white;
+    color: #6c6c6c;
     font-style: italic;
     font-weight: 400;
     border: 1px solid transparent;
     transition: background-color 0.3s, color 0.3s, border-color 0.3s, font-style 0.3s, font-weight 0.3s;
     font-size: 25px;
     padding: 15px;
+    width: 100%; /* Assure que tous les champs ont la même largeur */
+    box-sizing: border-box; /* Empêche les problèmes de largeur liés aux padding */
 }
 
 /* Lorsque le champ est sélectionné (focus) */
-#section-ajouter-adherent .champ-formulaire:focus {
+#section-ajouter-adherent .champ-formulaire:focus,
+#section-ajouter-adherent select.champ-formulaire:focus,
+#section-ajouter-adherent input[type="date"].champ-formulaire:focus {
     font-style: normal;
     font-weight: 500;
+    background-color: #F5F1ED;
+    color: #252323;
+    border-color: #E3B025; /* Optionnel : Ajoute une bordure distincte en focus */
 }
 
 /* Personnalisation des placeholders */
-#section-ajouter-adherent .champ-formulaire::placeholder {
+#section-ajouter-adherent .champ-formulaire::placeholder,
+#section-ajouter-adherent input[type="date"].champ-formulaire::placeholder {
     color: #6c6c6c;
     font-style: italic;
     font-size: 25px;
     transition: color 0.3s;
 }
 
-/* Effet lors du passage de la souris ou focus sur les champs */
+/* Effet au survol */
 #section-ajouter-adherent .champ-formulaire:hover,
-#section-ajouter-adherent .champ-formulaire:focus {
+#section-ajouter-adherent select.champ-formulaire:hover,
+#section-ajouter-adherent input[type="date"].champ-formulaire:hover {
     background-color: #F5F1ED;
-    color: #252323;
+    color: #6c6c6c;
 }
+
 
 #section-ajouter-adherent .champ-formulaire:focus::placeholder {
     color: #252323;
