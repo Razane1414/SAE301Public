@@ -81,3 +81,260 @@ p {
 .btn:hover {
     opacity: 0.9;
 }
+
+
+
+/* Titre principal (Ajouter un adhérent) */
+.header-title {
+    font-size: 72px;
+    font-weight: 800;
+    color: white;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    text-align: center;
+    word-wrap: break-word; /* Permet au titre de se couper si nécessaire */
+}
+
+/* Card pour le formulaire */
+.card {
+    background-color: #000;
+    border: none;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 600px; /* Limite la largeur sur grand écran */
+    padding: 50px;
+    overflow: hidden;
+}
+
+/* Titre de la carte */
+.card-header {
+    font-size: 40px;
+    text-align: center;
+    font-weight: 700;
+}
+
+/* Corps de la carte (le formulaire) */
+.card-body {
+    padding: 30px;
+}
+
+/* Champs du formulaire */
+.form-control {
+    border-radius: 15px;
+    margin-bottom: 15px;
+    background-color: #252323;
+    color: white;
+    font-style: italic;
+    font-weight: 400;
+    border: 1px solid transparent;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    font-size: 25px;
+    padding: 15px;
+}
+
+/* Lors du focus sur un champ */
+.form-control:focus {
+    font-style: normal;
+    font-weight: 500;
+}
+
+/* Personnalisation des placeholders */
+.form-control::placeholder {
+    color: #6c6c6c;
+    font-style: italic;
+    font-size: 25px;
+    transition: color 0.3s;
+}
+
+/* Effet au survol ou focus sur les champs */
+.form-control:hover,
+.form-control:focus {
+    background-color: #F5F1ED; /* Fond blanc */
+    color: #252323; /* Texte noir */
+}
+
+.form-control:focus::placeholder {
+    color: #252323; /* Placeholder devient noir */
+}
+
+/* Bouton "Ajouter un adhérent" */
+.btn-primary {
+    background-color: #E3B025; /* Jaune spécifique */
+    border: none;
+    padding: 15px 25px;
+    font-weight: bold;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 30px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Effet hover pour le bouton */
+.btn-primary:hover {
+    background-color: #D19D19; /* Couleur plus foncée au survol */
+    transform: scale(1.1); /* Grossissement du bouton */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Ombre plus marquée */
+}
+
+/* Cacher les labels pour l'accessibilité */
+.form-label {
+    display: none;
+}
+
+/* Centrage du contenu dans la carte */
+.card-body form {
+    text-align: center;
+}
+
+/* Responsivité : ajuster la largeur du formulaire pour les petits écrans */
+@media (max-width: 768px) {
+    .card {
+        padding: 30px;
+        max-width: 100%; /* Formulaire prend 100% de la largeur sur petits écrans */
+    }
+
+    .header-title {
+        font-size: 48px; /* Taille réduite pour le titre sur petits écrans */
+    }
+}
+/* Ciblage spécifique de la section "Ajouter un adhérent" */
+#section-ajouter-adherent {
+    background-color: #252323; /* Change la couleur de fond ici */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 150vh;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Titre de la section "Ajouter un adhérent" */
+#section-ajouter-adherent .titre-section {
+    font-size: 72px;
+    font-weight: 800;
+    color: white;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    word-wrap: break-word; /* Permet au titre de se couper si nécessaire */
+}
+
+/* Card (formulaire) */
+#section-ajouter-adherent .carte-formulaire {
+    background-color: #000000; /* Change la couleur de fond de la carte ici */
+    border: none;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 600px;
+    min-height: 700px; /* Ajout pour augmenter la hauteur minimale */
+    padding: 50px;
+    overflow-y: auto; /* Ajout d'un scroll si nécessaire */
+}
+
+
+/* En-tête de la carte */
+#section-ajouter-adherent .carte-header {
+    font-size: 40px;
+    text-align: center;
+    font-weight: 700;
+    color: white;
+}
+
+/* Corps de la carte (formulaire) */
+#section-ajouter-adherent .carte-corps {
+    padding: 30px;
+}
+
+/* Personnalisation des champs de formulaire pour inclure select et date */
+#section-ajouter-adherent .champ-formulaire,
+#section-ajouter-adherent select.champ-formulaire,
+#section-ajouter-adherent input[type="date"].champ-formulaire {
+    border-radius: 15px;
+    margin-bottom: 15px;
+    background-color: #252323;
+    color: #6c6c6c;
+    font-style: italic;
+    font-weight: 400;
+    border: 1px solid transparent;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s, font-style 0.3s, font-weight 0.3s;
+    font-size: 25px;
+    padding: 15px;
+    width: 100%; /* Assure que tous les champs ont la même largeur */
+    box-sizing: border-box; /* Empêche les problèmes de largeur liés aux padding */
+}
+
+/* Lorsque le champ est sélectionné (focus) */
+#section-ajouter-adherent .champ-formulaire:focus,
+#section-ajouter-adherent select.champ-formulaire:focus,
+#section-ajouter-adherent input[type="date"].champ-formulaire:focus {
+    font-style: normal;
+    font-weight: 500;
+    background-color: #F5F1ED;
+    color: #252323;
+    border-color: #E3B025; /* Optionnel : Ajoute une bordure distincte en focus */
+}
+
+/* Personnalisation des placeholders */
+#section-ajouter-adherent .champ-formulaire::placeholder,
+#section-ajouter-adherent input[type="date"].champ-formulaire::placeholder {
+    color: #6c6c6c;
+    font-style: italic;
+    font-size: 25px;
+    transition: color 0.3s;
+}
+
+/* Effet au survol */
+#section-ajouter-adherent .champ-formulaire:hover,
+#section-ajouter-adherent select.champ-formulaire:hover,
+#section-ajouter-adherent input[type="date"].champ-formulaire:hover {
+    background-color: #F5F1ED;
+    color: #6c6c6c;
+}
+
+
+#section-ajouter-adherent .champ-formulaire:focus::placeholder {
+    color: #252323;
+}
+
+/* Bouton "Ajouter un adhérent" */
+#section-ajouter-adherent .btn-ajouter {
+    background-color: #E3B025;
+    border: none;
+    padding: 15px 25px;
+    font-weight: bold;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 30px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Effet au survol du bouton */
+#section-ajouter-adherent .btn-ajouter:hover {
+    background-color: #D19D19;
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Cacher les labels pour l'accessibilité */
+#section-ajouter-adherent .form-label {
+    display: none;
+}
+
+/* Centrer le contenu dans le formulaire */
+#section-ajouter-adherent .carte-corps form {
+    text-align: center;
+}
+
+/* Responsivité : ajuster la largeur du formulaire pour les petits écrans */
+@media (max-width: 768px) {
+    #section-ajouter-adherent .carte-formulaire {
+        padding: 30px;
+        max-width: 100%;
+    }
+
+    #section-ajouter-adherent .titre-section {
+        font-size: 48px;
+    }
+}
+
