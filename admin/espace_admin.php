@@ -2,7 +2,7 @@
 
 // Inclure la configuration pour la connexion à la base de données
 require_once '../config/config.php';
-require_once '../class/Event.php'; 
+require_once '../class/Event.php';
 require_once '../class/Adherent.php';
 
 
@@ -41,15 +41,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_event'])) {
         ];
 
         // Envoyer une requête POST à l'API
-        $url = 'http://localhost/SAE301Local/api/api_events.php';         
+        $url = 'http://localhost/SAE301Local/api/api_events.php';
         $options = [
             'http' => [
-                'method'  => 'POST',
-                'header'  => 'Content-Type: application/json',
+                'method' => 'POST',
+                'header' => 'Content-Type: application/json',
                 'content' => json_encode($data)
             ]
         ];
-        $context  = stream_context_create($options);
+        $context = stream_context_create($options);
         $response = file_get_contents($url, false, $context); // Exécuter la requête
 
         // Afficher directement la réponse de l'API (message d'erreur ou succès)
@@ -81,15 +81,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_event'])) {
         ];
 
         // Envoyer une requête PUT à l'API
-        $url = 'http://localhost/SAE301Local/api/api_events.php';         
+        $url = 'http://localhost/SAE301Local/api/api_events.php';
         $options = [
             'http' => [
-                'method'  => 'PUT',
-                'header'  => 'Content-Type: application/json',
+                'method' => 'PUT',
+                'header' => 'Content-Type: application/json',
                 'content' => json_encode($data)
             ]
         ];
-        $context  = stream_context_create($options);
+        $context = stream_context_create($options);
         $response = file_get_contents($url, false, $context);
 
         // Afficher directement la réponse de l'API (message d'erreur ou succès)
@@ -107,14 +107,14 @@ if (isset($_GET['delete_id'])) {
     $eventId = $_GET['delete_id'];
 
     // Envoyer une requête DELETE à l'API
-    $url = 'http://localhost/SAE301Local/api/api_events.php?id=' . $eventId;         
+    $url = 'http://localhost/SAE301Local/api/api_events.php?id=' . $eventId;
     $options = [
         'http' => [
-            'method'  => 'DELETE',
-            'header'  => 'Content-Type: application/json'
+            'method' => 'DELETE',
+            'header' => 'Content-Type: application/json'
         ]
     ];
-    $context  = stream_context_create($options);
+    $context = stream_context_create($options);
     $response = file_get_contents($url, false, $context);
 
     // Afficher directement la réponse de l'API (message d'erreur ou succès)
@@ -172,50 +172,53 @@ $events = Event::getAllEvents($pdo);
 
 </head>
 
-
 <body>
 
     <div id="calendar"></div>
     <!-- Bouton Plus avec PNG -->
-    <button id="btn-plus" type="button">
-        <img src="../include/images/plus.png" alt="Plus" width="24" height="24">
-    </button>
-
+    <div class="btn-new-event">
+        <button id="btn-plus" type="button">
+            <img src="../include/images/plus.png" alt="Plus" width="24" height="24">
+        </button>
+    </div>
 
     <!-- Formulaire caché initialement -->
-    <div id="add-event-form" style="display:none;">
-        <h2>Ajouter un événement</h2>
-        <form method="POST">
-            <div>
-                <label for="titre">Titre</label>
-                <input type="text" id="titre" name="titre" required>
-            </div>
-            <div>
-                <label for="description">Description</label>
-                <textarea id="description" name="description" required></textarea>
-            </div>
-            <div>
-                <label for="date_event">Date</label>
-                <input type="date" id="date_event" name="date_event" required>
-            </div>
-            <div>
-                <label for="lieu">Lieu</label>
-                <input type="text" id="lieu" name="lieu">
-            </div>
-            <div>
-                <label for="type">Type</label>
-                <select id="type" name="type" required>
-                    <?php
-                    // Récupérer les types d'événements depuis la base de données via la méthode de la classe Event
-                    $eventTypes = Event::getEventTypes($pdo);
-                    foreach ($eventTypes as $value => $label) {
-                        echo "<option value=\"$value\">$label</option>";
-                    }
-                    ?>
-                </select>
-            </div>
-            <button type="submit" name="add_event">Ajouter</button>
-        </form>
+    <div id="add-event-form" class="carte-formulaire" style="display:none;">
+        <div class="carte-header">Ajouter un événement</div>
+
+        <!-- Corps de la carte -->
+        <div class="carte-corps">
+            <form method="POST">
+                <div>
+                    <input type="text" class="champ-formulaire" id="titre" name="titre"
+                        placeholder="Titre de l'événement" required>
+                </div>
+                <div>
+                    <textarea class="champ-formulaire" id="description" name="description" placeholder="Description"
+                        required></textarea>
+                </div>
+                <div>
+                    <input type="date" class="champ-formulaire" id="date_event" name="date_event" required>
+                </div>
+                <div>
+                    <input type="text" class="champ-formulaire" id="lieu" name="lieu" placeholder="Lieu de l'événement">
+                </div>
+                <div>
+                    <select class="champ-formulaire" id="type" name="type" required>
+                        <?php
+                        $eventTypes = Event::getEventTypes($pdo);
+                        foreach ($eventTypes as $value => $label) {
+                            echo "<option value=$value>$label</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+                <!-- Bouton pour soumettre le formulaire -->
+                <div class="center-btn">
+                    <button type="submit" name="add_event" class="btn-ajouter">Ajouter l'événement</button>
+                </div>
+            </form>
+        </div>
     </div>
 
 
@@ -257,60 +260,62 @@ $events = Event::getAllEvents($pdo);
 
     <!-- Formulaire d'ajout d'adhérent -->
 
- 
+
     <div id="section-ajouter-adherent">
-    <!-- Titre de la section -->
-    <h1 class="titlee">
-    <span class="highlight">Ajouter</span> un adhérent
-</h1>
+        <!-- Carte contenant le formulaire -->
+        <div class="carte-formulaire">
+            <!-- En-tête de la carte -->
+            <div class="carte-header">Ajouter un adhérent</div>
 
-    <!-- Carte contenant le formulaire -->
-    <div class="carte-formulaire">
-        <!-- En-tête de la carte -->
-        <div class="carte-header">Formulaire d'ajout</div>
-
-        <!-- Corps de la carte (formulaire) -->
-        <div class="carte-corps">
-            <form method="POST">
-                <div>
-                <input type="text" class="champ-formulaire" id="nom" name="nom" placeholder="Nom de l'adhérent" required>
-                </div>
-                <div>
-                <input type="text" class="champ-formulaire" id="prenom" name="prenom" placeholder="Prenom de l'adhérent" required>
-                </div>
-                <div>
-                <input type="email" class="champ-formulaire" id="email" name="email" placeholder="Email" required>
-                </div>
-                <div>
-                <input type="password" class="champ-formulaire" id="password" name="password" placeholder="Mot de passe" required>
-                </div>
-                <div>
-                <input type="date" class="champ-formulaire" id="date_naissance" name="date_naissance" placeholder="Mot de passe" required>
-                </div>
-                <div>
-                <select class="champ-formulaire" id="sexe" name="sexe" required>
-                    <option value="M">Homme</option>
-                    <option value="F">Femme</option> 
-                    </select>
-                </div>
-                <!-- Bouton pour soumettre le formulaire -->
-                <button type="submit" name="add_adherent" class="btn-ajouter">Ajouter un adhérent</button>
-            </form>
+            <!-- Corps de la carte (formulaire) -->
+            <div class="carte-corps">
+                <form method="POST">
+                    <div>
+                        <input type="text" class="champ-formulaire" id="nom" name="nom" placeholder="Nom de l'adhérent"
+                            required>
+                    </div>
+                    <div>
+                        <input type="text" class="champ-formulaire" id="prenom" name="prenom"
+                            placeholder="Prenom de l'adhérent" required>
+                    </div>
+                    <div>
+                        <input type="email" class="champ-formulaire" id="email" name="email" placeholder="Email"
+                            required>
+                    </div>
+                    <div>
+                        <input type="password" class="champ-formulaire" id="password" name="password"
+                            placeholder="Mot de passe" required>
+                    </div>
+                    <div>
+                        <input type="date" class="champ-formulaire" id="date_naissance" name="date_naissance"
+                            placeholder="Mot de passe" required>
+                    </div>
+                    <div>
+                        <select class="champ-formulaire" id="sexe" name="sexe" required>
+                            <option value="M">Homme</option>
+                            <option value="F">Femme</option>
+                        </select>
+                    </div>
+                    <!-- Bouton pour soumettre le formulaire -->
+                    <div class="center-btn">
+                        <button type="submit" name="add_adherent" class="btn-ajouter">Ajouter un adhérent</button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
 
-    <!-- Fenêtre modale de confirmation -->
-    <div id="confirmation-modal" class="modal">
-        <div class="modal-content">
-            <span id="close-modal" class="close">&times;</span>
-            <h2>Confirmation de suppression</h2>
-            <p>Êtes-vous sûr de vouloir supprimer cet événement ?</p>
-            <button id="confirm-delete" class="btn btn-danger">Supprimer</button>
-            <button id="cancel-delete" class="btn btn-secondary">Annuler</button>
+        <!-- Fenêtre modale de confirmation -->
+        <div id="confirmation-modal" class="modal">
+            <div class="modal-content">
+                <span id="close-modal" class="close">&times;</span>
+                <h2>Confirmation de suppression</h2>
+                <p>Êtes-vous sûr de vouloir supprimer cet événement ?</p>
+                <button id="confirm-delete" class="btn btn-danger">Supprimer</button>
+                <button id="cancel-delete" class="btn btn-secondary">Annuler</button>
+            </div>
         </div>
-    </div>
 
-    
+
 
 </body>
 
