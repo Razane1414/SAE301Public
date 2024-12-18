@@ -67,12 +67,13 @@ header {
     content: '';
     position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    left: auto; /* Pas besoin d'ancrer à gauche */
+    right: 0; /* Positionne l'image à droite */
+    width: 65%; /* Ajuste la largeur selon l'écran, vous pouvez ajuster cette valeur */
+    height: 100%; /* S'étend sur toute la hauteur de la section */
     background-image: url('../images/background.jpg');
-    background-size: 65% 100%;
-    background-position: right center;
+    background-size: contain; /* L'image conserve ses proportions */
+    background-position: right center; /* Positionne l'image à droite, centrée verticalement */
     background-repeat: no-repeat;
     filter: brightness(50%);
     z-index: 1;
@@ -199,8 +200,6 @@ body {
     bottom: -15px; /* Ajustement de la position */
     right: 8%;
 }
-
-
 
 .content {
     padding: 20px;

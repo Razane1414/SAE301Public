@@ -1,53 +1,52 @@
-/* Menu burger */
 .burger-menu {
-    display: none;
-    position: absolute;
+    position: fixed; 
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
     background-color: #252323;
     z-index: 1000;
-    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center; 
+    margin: 0;
+    padding: 0;
     transform: translateY(-100%);
+    opacity: 0;
     transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
-/* Menu burger avec la classe active */
 .burger-menu.active {
-    display: block;
-    opacity: 1;
     transform: translateY(0);
+    opacity: 1;
 }
 
-/* Position de la croix */
-.close-btn {
-    position: absolute;
-    top: 10px;
-    right: 20px;  /* Légèrement à droite pour un bon espacement */
-    background: none;
-    border: none;
-    font-size: 2rem;
-    color: white;
-    cursor: pointer;
-    z-index: 1100; /* S'assurer que la croix est au-dessus des autres éléments */
-}
-
-.close-btn:hover {
-    color: #E3B025;
-}
-
-/* Liens dans le menu burger */
 .burger-menu .nav-link {
     color: white;
     text-decoration: none;
-    font-size: 1.5rem;
-    padding: 10px 0;
-    display: inline-block;
+    font-size: 2rem;
+    margin: 10px 0; 
     text-align: center;
     transition: color 0.3s ease;
 }
 
 .burger-menu .nav-link:hover {
+    color: #E3B025;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2.5rem;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1101; 
+}
+
+.close-btn:hover {
     color: #E3B025;
 }

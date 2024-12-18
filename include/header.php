@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +19,7 @@
 
                 <!-- Logo centré -->
                 <div class="col text-center">
-                    <a href="index.php">
+                    <a href="../index.php">
                         <img src="../include/images/Logo1.png" alt="Logo" class="img-fluid" style="max-width: 100px;">
                     </a>
                 </div>
@@ -51,18 +50,17 @@
                 </div>
             </div>
         </div>
-
 <!-- Menu burger déroulant pour mobile -->
 <div id="burger-menu" class="burger-menu d-md-none">
     <!-- Croix pour fermer le menu -->
     <button id="close-menu" class="close-btn" aria-label="Fermer le menu">
-        &times; <!-- Symbole croix -->
+        &times;
     </button>
     <nav class="nav flex-column text-center">
-        <a class="nav-link" href="club.php">LE CLUB</a>
-        <a class="nav-link" href="specialites.php">SPÉCIALITÉS</a>
-        <a class="nav-link" href="avis_clients.php">AVIS CLIENTS</a>
-        <a class="nav-link" href="blog.php">BLOG</a>
+        <a class="nav-link" href="#">LE CLUB</a>
+        <a class="nav-link" href="#">SPÉCIALITÉS</a>
+        <a class="nav-link" href="#">AVIS CLIENTS</a>
+        <a class="nav-link" href="#">BLOG</a>
     </nav>
 </div>
     </header>

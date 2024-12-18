@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <header>
+<header>
         <div class="container">
             <div class="row align-items-center justify-content-between">
                 <!-- Bouton menu burger à gauche pour mobile -->
@@ -39,36 +39,35 @@
                 <!-- Navigation centrale pour PC uniquement -->
                 <div class="col-md-6 d-none d-md-block" id="nav-pc">
                     <nav class="nav justify-content-center">
-                        <a class="nav-link" href="club.php">LE CLUB</a>
-                        <a class="nav-link" href="specialites.php">SPÉCIALITÉS</a>
-                        <a class="nav-link" href="avis_clients.php">AVIS CLIENTS</a>
-                        <a class="nav-link" href="blog.php">BLOG</a>
+                    <a class="nav-link" href="#">LE CLUB</a>
+        <a class="nav-link" href="#">SPÉCIALITÉS</a>
+        <a class="nav-link" href="#">AVIS CLIENTS</a>
+        <a class="nav-link" href="#">BLOG</a>
                     </nav>
                 </div>
 
                 <!-- Section droite : Devenir membre pour PC -->
                 <div class="col-md-3 d-none d-md-flex justify-content-end align-items-center">
-                    <a href="adherents/register.php" class="btn btn-rejoindre me-3">Devenir membre</a>
-                    <a href="adherents/login.php" aria-label="Espace Membre">
+                    <a href="#" class="btn btn-rejoindre me-3">Devenir membre</a>
+                    <a href="../adherents/login.php" aria-label="Espace Membre">
                         <img src="include/images/icone_membre.svg" alt="Espace Membre" style="max-width: 40px;">
                     </a>
                 </div>
             </div>
         </div>
-
-        <!-- Menu burger déroulant pour mobile -->
-        <div id="burger-menu" class="burger-menu d-md-none">
-            <!-- Croix pour fermer le menu -->
-            <button id="close-menu" class="close-btn" aria-label="Fermer le menu">
-                &times; <!-- Symbole croix -->
-            </button>
-            <nav class="nav flex-column text-center">
-                <a class="nav-link" href="club.php">LE CLUB</a>
-                <a class="nav-link" href="specialites.php">SPÉCIALITÉS</a>
-                <a class="nav-link" href="avis_clients.php">AVIS CLIENTS</a>
-                <a class="nav-link" href="blog.php">BLOG</a>
-            </nav>
-        </div>
+<!-- Menu burger déroulant pour mobile -->
+<div id="burger-menu" class="burger-menu d-md-none">
+    <!-- Croix pour fermer le menu -->
+    <button id="close-menu" class="close-btn" aria-label="Fermer le menu">
+        &times;
+    </button>
+    <nav class="nav flex-column text-center">
+        <a class="nav-link" href="#">LE CLUB</a>
+        <a class="nav-link" href="#">SPÉCIALITÉS</a>
+        <a class="nav-link" href="#">AVIS CLIENTS</a>
+        <a class="nav-link" href="#">BLOG</a>
+    </nav>
+</div>
     </header>
 
     <!-- Section Hero -->
