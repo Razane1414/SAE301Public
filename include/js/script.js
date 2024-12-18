@@ -1,19 +1,25 @@
-document.addEventListener('DOMContentLoaded', function () {
-    let burgerToggle = document.getElementById('burger-menu-toggle'); // Bouton menu burger
-    let burgerMenu = document.getElementById('burger-menu'); // Menu déroulant
-    let closeMenu = document.getElementById('close-menu'); // Croix pour fermer
+document.addEventListener("DOMContentLoaded", function () {
+    // Sélectionne les éléments
+    const burgerMenu = document.getElementById("burger-menu");
+    const burgerLinks = document.querySelectorAll("#burger-menu .nav-link");
+    const closeButton = document.getElementById("close-menu");
+    const burgerToggle = document.getElementById("burger-menu-toggle");
 
-    // Ouvrir le menu burger
-    if (burgerToggle && burgerMenu) {
-        burgerToggle.addEventListener('click', function () {
-            burgerMenu.classList.add('active');
-        });
+    // Fonction pour fermer le menu
+    function closeMenu() {
+        burgerMenu.classList.remove("active");
     }
 
-    // Fermer le menu avec la croix
-    if (closeMenu && burgerMenu) {
-        closeMenu.addEventListener('click', function () {
-            burgerMenu.classList.remove('active');
-        });
-    }
+    // Ferme le menu quand on clique sur un lien
+    burgerLinks.forEach(link => {
+        link.addEventListener("click", closeMenu);
+    });
+
+    // Ferme le menu avec la croix
+    closeButton.addEventListener("click", closeMenu);
+
+    // Ouvre le menu avec le bouton burger
+    burgerToggle.addEventListener("click", () => {
+        burgerMenu.classList.toggle("active");
+    });
 });
