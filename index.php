@@ -12,7 +12,7 @@
 </head>
 
 <body>
-<header>
+    <header>
         <div class="container">
             <div class="row align-items-center justify-content-between">
                 <!-- Bouton menu burger à gauche pour mobile -->
@@ -39,10 +39,10 @@
                 <!-- Navigation centrale pour PC uniquement -->
                 <div class="col-md-6 d-none d-md-block" id="nav-pc">
                     <nav class="nav justify-content-center">
-                    <a class="nav-link" href="#">LE CLUB</a>
-        <a class="nav-link" href="#">SPÉCIALITÉS</a>
-        <a class="nav-link" href="#">AVIS CLIENTS</a>
-        <a class="nav-link" href="#">BLOG</a>
+                        <a class="nav-link" href="#">LE CLUB</a>
+                        <a class="nav-link" href="#">SPÉCIALITÉS</a>
+                        <a class="nav-link" href="#">AVIS CLIENTS</a>
+                        <a class="nav-link" href="#">BLOG</a>
                     </nav>
                 </div>
 
@@ -55,19 +55,19 @@
                 </div>
             </div>
         </div>
-<!-- Menu burger déroulant pour mobile -->
-<div id="burger-menu" class="burger-menu d-md-none">
-    <!-- Croix pour fermer le menu -->
-    <button id="close-menu" class="close-btn" aria-label="Fermer le menu">
-        &times;
-    </button>
-    <nav class="nav flex-column text-center">
-        <a class="nav-link" href="#">LE CLUB</a>
-        <a class="nav-link" href="#">SPÉCIALITÉS</a>
-        <a class="nav-link" href="#">AVIS CLIENTS</a>
-        <a class="nav-link" href="#">BLOG</a>
-    </nav>
-</div>
+        <!-- Menu burger déroulant pour mobile -->
+        <div id="burger-menu" class="burger-menu d-md-none">
+            <!-- Croix pour fermer le menu -->
+            <button id="close-menu" class="close-btn" aria-label="Fermer le menu">
+                &times;
+            </button>
+            <nav class="nav flex-column text-center">
+                <a class="nav-link" href="#">LE CLUB</a>
+                <a class="nav-link" href="#">SPÉCIALITÉS</a>
+                <a class="nav-link" href="#">AVIS CLIENTS</a>
+                <a class="nav-link" href="#">BLOG</a>
+            </nav>
+        </div>
     </header>
 
     <!-- Section Hero -->
@@ -85,68 +85,68 @@
 
 
     <div class="container my-5">
-    <div class="row align-items-center">
-        <!-- Image Section -->
-        <div class="col-md-6">
-            <div class="image-container">
-                <div class="yellow-corner-top"></div>
-                <img src="include/images/Fighter.jpg" alt="MMA Fighter" class="img-fluid">
-                <div class="yellow-corner-bottom"></div>
-            </div>
-        </div>
-
-        <!-- Content Section -->
-        <div class="col-md-6">
-            <p class="text-uppercase text-warning mb-2">Le Club</p>
-            <h1 class="fw-bold">Bienvenue &agrave; la Team Vulcan, le club de MMA r&eacute;f&eacute;rence en
-                Auvergne</h1>
-            <p class="mt-3">Team Vulcan est le club de MMA et grappling de r&eacute;f&eacute;rence en Auvergne.
-                Accessible &agrave; tous, nous offrons un entra&icirc;nement de qualit&eacute; dans une ambiance
-                conviviale et motivante.</p>
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="section">
-                        <div class="d-flex align-items-center mb-2">
-                            <span class="yellow-diamond"></span>
-                            <span class="section-title">Meilleurs entra&icirc;nements</span>
-                        </div>
-                        <p class="section-text">Entra&icirc;nements dirig&eacute;s par des coachs passionn&eacute;s,
-                            adapt&eacute;s &agrave; tous les niveaux.</p>
-                    </div>
-
-                    <div class="section">
-                        <div class="d-flex align-items-center mb-2">
-                            <span class="yellow-diamond"></span>
-                            <span class="section-title">Equipement de qualit&eacute;</span>
-                        </div>
-                        <p class="section-text">Des &eacute;quipements modernes et bien entretenus pour garantir
-                            votre s&eacute;curit&eacute; et confort.</p>
-                    </div>
+        <div class="row align-items-center">
+            <!-- Image Section -->
+            <div class="col-md-6">
+                <div class="image-container">
+                    <div class="yellow-corner-top"></div>
+                    <img src="include/images/Fighter.jpg" alt="MMA Fighter" class="img-fluid">
+                    <div class="yellow-corner-bottom"></div>
                 </div>
+            </div>
 
-                <div class="col-md-6">
-                    <div class="section">
-                        <div class="d-flex align-items-center mb-2">
-                            <span class="yellow-diamond"></span>
-                            <span class="section-title">Tarif accessible</span>
+            <!-- Content Section -->
+            <div class="col-md-6">
+                <p class="text-uppercase text-warning mb-2">Le Club</p>
+                <h1 class="fw-bold">Bienvenue &agrave; la Team Vulcan, le club de MMA r&eacute;f&eacute;rence en
+                    Auvergne</h1>
+                <p class="mt-3">Team Vulcan est le club de MMA et grappling de r&eacute;f&eacute;rence en Auvergne.
+                    Accessible &agrave; tous, nous offrons un entra&icirc;nement de qualit&eacute; dans une ambiance
+                    conviviale et motivante.</p>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="section">
+                            <div class="d-flex align-items-center mb-2">
+                                <span class="yellow-diamond"></span>
+                                <span class="section-title">Meilleurs entra&icirc;nements</span>
+                            </div>
+                            <p class="section-text">Entra&icirc;nements dirig&eacute;s par des coachs passionn&eacute;s,
+                                adapt&eacute;s &agrave; tous les niveaux.</p>
                         </div>
-                        <p class="section-text">Des formules accessibles pour offrir le meilleur rapport
-                            qualit&eacute;-prix.</p>
+
+                        <div class="section">
+                            <div class="d-flex align-items-center mb-2">
+                                <span class="yellow-diamond"></span>
+                                <span class="section-title">Equipement de qualit&eacute;</span>
+                            </div>
+                            <p class="section-text">Des &eacute;quipements modernes et bien entretenus pour garantir
+                                votre s&eacute;curit&eacute; et confort.</p>
+                        </div>
                     </div>
-                    <div class="section">
-                        <div class="d-flex align-items-center mb-2">
-                            <span class="yellow-diamond"></span>
-                            <span class="section-title">Ambiance unique</span>
+
+                    <div class="col-md-6">
+                        <div class="section">
+                            <div class="d-flex align-items-center mb-2">
+                                <span class="yellow-diamond"></span>
+                                <span class="section-title">Tarif accessible</span>
+                            </div>
+                            <p class="section-text">Des formules accessibles pour offrir le meilleur rapport
+                                qualit&eacute;-prix.</p>
                         </div>
-                        <p class="section-text">Rejoignez une communaut&eacute; o&ugrave; respect et entraide sont
-                            au c&oelig;ur de notre philosophie.</p>
+                        <div class="section">
+                            <div class="d-flex align-items-center mb-2">
+                                <span class="yellow-diamond"></span>
+                                <span class="section-title">Ambiance unique</span>
+                            </div>
+                            <p class="section-text">Rejoignez une communaut&eacute; o&ugrave; respect et entraide sont
+                                au c&oelig;ur de notre philosophie.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 
     <!-- Scripts JS -->
