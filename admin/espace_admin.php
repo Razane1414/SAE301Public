@@ -208,6 +208,10 @@ $events = Event::getAllEvents($pdo);
 
 <body>
 
+    <?php
+    include '../include/header.php';
+    ?>
+
     <div id="calendar"></div>
     <!-- Bouton Plus avec PNG -->
     <div class="btn-new-event">
@@ -385,6 +389,9 @@ $events = Event::getAllEvents($pdo);
             <?php endforeach; ?>
         </tbody>
     </table>
+    <?php
+    include '../include/footer.php';
+    ?>
 
 </body>
 
