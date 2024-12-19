@@ -5,7 +5,7 @@ require_once '../config/config.php';
 session_start();
 if (!isset($_SESSION['adherent_id'])) {
     // Si l'utilisateur n'est pas connecté, redirection vers la page de connexion
-    header('Location: connexion.php');
+    header('Location: login.php');
     exit;
 }
 

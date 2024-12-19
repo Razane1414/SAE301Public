@@ -123,8 +123,28 @@ if (isset($_GET['delete_id'])) {
     header("Location: espace_admin.php");
     exit();
 }
+// Récupérer les dernières inscriptions
+$sql = "SELECT 
+            i.id AS inscription_id,
+            a.nom AS nom_adherent,
+            a.prenom AS prenom_adherent,
+            e.titre AS titre_evenement,
+            i.date_inscription
 
-// Ajouter un adhérent via l'API
+        FROM 
+            inscriptions i
+        JOIN 
+            adherents a ON i.adherent_id = a.id
+        JOIN 
+            events e ON i.event_id = e.id
+        ORDER BY 
+            i.date_inscription DESC";
+
+$stmt = $pdo->prepare($sql);
+$stmt->execute();
+$inscriptions = $stmt->fetchAll();
+
+// Ajouter un adhérent 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_adherent'])) {
     $nom = $_POST['nom'];
     $prenom = $_POST['prenom'];
@@ -147,6 +167,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_adherent'])) {
         echo "<script>alert('Tous les champs doivent être remplis');</script>";
     }
 }
+// Récupérer tous les adhérents
+$sqlAdherents = "SELECT 
+                    id,
+                    nom,
+                    prenom,
+                    email,
+                    date_naissance,
+                    sexe,
+                    date_creation
+                FROM 
+                    adherents
+                ORDER BY 
+                    date_creation DESC";
+
+$stmtAdherents = $pdo->prepare($sqlAdherents);
+$stmtAdherents->execute();
+$adherents = $stmtAdherents->fetchAll();
 
 // Récupérer tous les événements
 $events = Event::getAllEvents($pdo);
@@ -168,7 +205,6 @@ $events = Event::getAllEvents($pdo);
 
     <script src="../include/js/calendrier.js"></script>
     <script src="../include/js/admin.js"></script>
-    <script src="../include/js/modal.js"></script>
 
 </head>
 
@@ -181,6 +217,8 @@ $events = Event::getAllEvents($pdo);
             <img src="../include/images/plus.png" alt="Plus" width="24" height="24">
         </button>
     </div>
+
+
 
     <!-- Formulaire caché initialement -->
     <div id="add-event-form" class="carte-formulaire" style="display:none;">
@@ -223,44 +261,66 @@ $events = Event::getAllEvents($pdo);
 
 
     <?php if ($eventToEdit): ?>
-        <h2>Modifier l'événement</h2>
-        <form method="POST">
-            <div>
-                <label for="titre">Titre</label>
-                <input type="text" id="titre" name="titre" value="<?= $eventToEdit['titre'] ?>" required>
-            </div>
-            <div>
-                <label for="description">Description</label>
-                <textarea id="description" name="description" required><?= $eventToEdit['description'] ?></textarea>
-            </div>
-            <div>
-                <label for="date_event">Date</label>
-                <input type="date" id="date_event" name="date_event" value="<?= $eventToEdit['date_event'] ?>" required>
-            </div>
-            <div>
-                <label for="lieu">Lieu</label>
-                <input type="text" id="lieu" name="lieu" value="<?= $eventToEdit['lieu'] ?>">
-            </div>
-            <div>
-                <label for="type">Type</label>
-                <select id="type" name="type" required>
-                    <?php
-                    $eventTypes = Event::getEventTypes($pdo);
-                    foreach ($eventTypes as $value => $label) {
-                        $selected = ($value == $eventToEdit['type']) ? 'selected' : '';
-                        echo "<option value=\"$value\" $selected>$label</option>";
-                    }
-                    ?>
-                </select>
-            </div>
-            <input type="hidden" name="id" value="<?= $eventToEdit['id'] ?>">
-            <button type="submit" name="update_event">Mettre à jour</button>
-        </form>
+    <h2>Modifier l'événement</h2>
+    <form method="POST">
+        <div>
+            <label for="edit_titre">Titre</label>
+            <input type="text" id="edit_titre" name="titre" value="<?= $eventToEdit['titre'] ?>" required>
+        </div>
+        <div>
+            <label for="edit_description">Description</label>
+            <textarea id="edit_description" name="description" required><?= $eventToEdit['description'] ?></textarea>
+        </div>
+        <div>
+            <label for="edit_date_event">Date</label>
+            <input type="date" id="edit_date_event" name="date_event" value="<?= $eventToEdit['date_event'] ?>" required>
+        </div>
+        <div>
+            <label for="edit_lieu">Lieu</label>
+            <input type="text" id="edit_lieu" name="lieu" value="<?= $eventToEdit['lieu'] ?>">
+        </div>
+        <div>
+            <label for="edit_type">Type</label>
+            <select id="edit_type" name="type" required>
+                <?php
+                $eventTypes = Event::getEventTypes($pdo);
+                foreach ($eventTypes as $value => $label) {
+                    $selected = ($value == $eventToEdit['type']) ? 'selected' : '';
+                    echo "<option value=\"$value\" $selected>$label</option>";
+                }
+                ?>
+            </select>
+        </div>
+        <input type="hidden" name="id" value="<?= $eventToEdit['id'] ?>">
+        <button type="submit" name="update_event">Mettre à jour</button>
+    </form>
     <?php endif; ?>
 
+
+
+    <h2>Dernières Inscriptions aux Événements</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Nom de l'adhérent</th>
+                <th>Prénom</th>
+                <th>Événement</th>
+                <th>Date d'inscription</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($inscriptions as $inscription): ?>
+            <tr>
+                <td><?= htmlspecialchars($inscription['nom_adherent']) ?></td>
+                <td><?= htmlspecialchars($inscription['prenom_adherent']) ?></td>
+                <td><?= htmlspecialchars($inscription['titre_evenement']) ?></td>
+                <td><?= htmlspecialchars($inscription['date_inscription']) ?></td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
     <!-- Formulaire d'ajout d'adhérent -->
-
-
     <div id="section-ajouter-adherent">
         <!-- Carte contenant le formulaire -->
         <div class="carte-formulaire">
@@ -303,17 +363,31 @@ $events = Event::getAllEvents($pdo);
                 </form>
             </div>
         </div>
+    </div>
+    <h2>Liste des Adhérents</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Email</th>
+                <th>Date de naissance</th>
+                <th>Sexe</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($adherents as $adherent): ?>
+            <tr>
+                <td><?= htmlspecialchars($adherent['nom']) ?></td>
+                <td><?= htmlspecialchars($adherent['prenom']) ?></td>
+                <td><?= htmlspecialchars($adherent['email']) ?></td>
+                <td><?= htmlspecialchars($adherent['date_naissance']) ?></td>
+                <td><?= htmlspecialchars($adherent['sexe'] == 'M' ? 'Homme' : 'Femme') ?></td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
 
-        <!-- Fenêtre modale de confirmation -->
-        <div id="confirmation-modal" class="modal">
-            <div class="modal-content">
-                <span id="close-modal" class="close">&times;</span>
-                <h2>Confirmation de suppression</h2>
-                <p>Êtes-vous sûr de vouloir supprimer cet événement ?</p>
-                <button id="confirm-delete" class="btn btn-danger">Supprimer</button>
-                <button id="cancel-delete" class="btn btn-secondary">Annuler</button>
-            </div>
-        </div>
 
 
 
