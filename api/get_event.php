@@ -4,17 +4,20 @@ header('Content-Type: application/json');
 
 // Vérification de la méthode
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $date = isset($_GET['date']) ? $_GET['date'] : null;
+    if (isset($_GET['id'])) {
+        // Si un ID est passé, on récupère les détails de l'événement
+        $eventId = $_GET['id'];
+        $stmt = $pdo->prepare("SELECT id, titre, description, date_event, lieu, type FROM events WHERE id = ?");
+        $stmt->execute([$eventId]);
+        $event = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($date) {
-        // Récupérer les événements pour une date donnée
-        $stmt = $pdo->prepare("SELECT id, titre, description, date_event FROM events WHERE date_event = ?");
-        $stmt->execute([$date]);
-        $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        echo json_encode(['success' => true, 'events' => $events]);
+        if ($event) {
+            echo json_encode(['success' => true, 'events' => [$event]]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Événement non trouvé']);
+        }
     } else {
-        // Renvoyer tous les événements si aucune date spécifique n'est fournie
+        // Si aucun ID n'est passé, récupérer tous les événements
         $stmt = $pdo->query("SELECT id, titre, description, date_event FROM events");
         $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
