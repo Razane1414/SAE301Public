@@ -388,9 +388,6 @@ $events = Event::getAllEvents($pdo);
         </tbody>
     </table>
 
-
-
-
 </body>
 
 </html>
