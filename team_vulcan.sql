@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 12 déc. 2024 à 10:36
+-- Généré le : jeu. 19 déc. 2024 à 15:33
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -33,15 +33,17 @@ CREATE TABLE `adherents` (
   `prenom` varchar(100) NOT NULL,
   `email` varchar(150) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `date_creation` timestamp NOT NULL DEFAULT current_timestamp()
+  `date_creation` timestamp NOT NULL DEFAULT current_timestamp(),
+  `date_naissance` date NOT NULL DEFAULT '1900-01-01',
+  `sexe` enum('M','F') NOT NULL DEFAULT 'M'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `adherents`
 --
 
-INSERT INTO `adherents` (`id`, `nom`, `prenom`, `email`, `password`, `date_creation`) VALUES
-(1, 'membre', 'membre', 'membre@gmail.com', 'motdepasse123', '2024-12-12 09:35:51');
+INSERT INTO `adherents` (`id`, `nom`, `prenom`, `email`, `password`, `date_creation`, `date_naissance`, `sexe`) VALUES
+(5, 'membre', 'membre', 'membre@gmail.com', '$2y$10$s8eIC3tpnGGhiW6ZT9MDAehKk1rdTSWFxlZJvN0C6m.0h4fg92nH.', '2024-12-18 17:49:08', '2024-12-20', 'M');
 
 -- --------------------------------------------------------
 
@@ -80,6 +82,14 @@ CREATE TABLE `events` (
   `type` enum('MMA','Boxe Thai','Kickboxing','JJB','Autre') NOT NULL DEFAULT 'Autre'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Déchargement des données de la table `events`
+--
+
+INSERT INTO `events` (`id`, `titre`, `description`, `date_event`, `lieu`, `type`) VALUES
+(35, 'nouvel event', 'dc', '2024-12-27', 'xx', 'MMA'),
+(36, 'caca', 'QDSSV', '2024-12-19', 'ZDQS', 'MMA');
+
 -- --------------------------------------------------------
 
 --
@@ -92,6 +102,14 @@ CREATE TABLE `inscriptions` (
   `event_id` int(11) NOT NULL,
   `date_inscription` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `inscriptions`
+--
+
+INSERT INTO `inscriptions` (`id`, `adherent_id`, `event_id`, `date_inscription`) VALUES
+(1, 5, 36, '2024-12-19 09:59:24'),
+(2, 5, 35, '2024-12-19 09:59:46');
 
 --
 -- Index pour les tables déchargées
@@ -133,7 +151,7 @@ ALTER TABLE `inscriptions`
 -- AUTO_INCREMENT pour la table `adherents`
 --
 ALTER TABLE `adherents`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `admins`
@@ -145,13 +163,13 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT pour la table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT pour la table `inscriptions`
 --
 ALTER TABLE `inscriptions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Contraintes pour les tables déchargées

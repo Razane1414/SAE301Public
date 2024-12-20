@@ -1,51 +1,65 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Récupérer l'élément du calendrier
+    let selectedEventId = null;
+
     var calendarEl = document.getElementById('calendar');
-
-    // Initialiser le calendrier FullCalendar
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',  // Vue par défaut (mois)
-        events: function (info, successCallback, failureCallback) {
-            // Récupérer les événements depuis l'API avec AJAX
-            fetch('http://localhost/SAE301Local/api/get_event.php') // Remplacez par l'URL de votre API
-                .then(response => response.json())
-                .then(data => {
-                    // Ajouter les événements dans FullCalendar
-                    const events = data.events.map(event => ({
-                        id: event.id,  // ID de l'événement pour l'édition
-                        title: event.titre,
-                        start: event.date_event,  // Date de début de l'événement
-                        description: event.description,  // Description de l'événement
-                        location: event.lieu,  // Lieu de l'événement
-                        type: event.type,  // Type de l'événement
-                    }));
-
-                    successCallback(events); // Ajouter les événements au calendrier
-                })
-        },
-
-    });
-
-    // Rendre le calendrier visible
-    calendar.render();
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-    var calendarEl = document.getElementById('calendar');
-
     var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
-        events: 'http://localhost/SAE301Local/api/get_event.php', // URL où les événements sont chargés
-        eventClick: function (info) {
-            // Récupérer les données de l'événement cliqué
-            const title = info.event.title;
-            const description = info.event.extendedProps.description;
+        events: function(info, successCallback, failureCallback) {
+            fetch('http://localhost/SAE301Local/api/get_event.php')
+                .then(response => response.json())
+                .then(data => {
+                    const events = data.events.map(event => ({
+                        id: event.id,
+                        title: event.titre,
+                        start: event.date_event,
+                        description: event.description,
+                    }));
+                    successCallback(events);
+                })
+                .catch(error => console.error('Erreur lors de la récupération des événements:', error));
+        },
+        eventClick: function(info) {
+            const eventId = info.event.id;
+            selectedEventId = eventId;
 
-            // Mettre à jour les éléments dans la section en dessous
-            document.querySelector('.event-title').textContent = `Événement sélectionné : ${title}`;
-            document.querySelector('.description').textContent = description;
-        }
+            fetch(`http://localhost/SAE301Local/api/get_event.php?id=${eventId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const event = data.events[0];
+                        document.querySelector('.event-title').textContent = event.titre;
+                        document.querySelector('.description').textContent = event.description;
+                        document.querySelector('.event-date').textContent = `Date : ${event.date_event}`;
+                        document.querySelector('.event-location').textContent = `Lieu : ${event.lieu}`;
+                        document.querySelector('.event-type').textContent = `Type : ${event.type}`;
+                        document.getElementById('btn-inscription').style.display = 'block';
+                    }
+                });
+        },
     });
 
     calendar.render();
+
+    // Gestion du clic sur le bouton d'inscription
+    document.getElementById('btn-inscription').addEventListener('click', function () {
+    
+        fetch('http://localhost/SAE301Local/api/inscription_event.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `event_id=${selectedEventId}`,
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Inscription réussie.');
+                    document.getElementById('btn-inscription').style.display = 'none';
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => console.error('Erreur lors de l\'inscription:', error));
+    });
+    
 });
