@@ -8,9 +8,7 @@ require_once '../class/Adherent.php';
 
 // Démarrer la session
 session_start();
-
-// Vérifier si l'utilisateur est connecté
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['admin_id'])) {
     header("Location: login_admin.php");
     exit();
 }
@@ -180,6 +178,10 @@ $events = Event::getAllEvents($pdo);
     include '../include/header.php';
     ?>
 
+    <?php
+    include '../include/header.php';
+    ?>
+
     <div id="calendar"></div>
     <!-- Bouton Plus avec PNG -->
     <div class="btn-new-event">
@@ -336,7 +338,6 @@ $events = Event::getAllEvents($pdo);
                     <button id="cancel-delete" class="btn btn-secondary">Annuler</button>
                 </div>
             </div>
-
 
             <?php
             include '../include/footer.php';

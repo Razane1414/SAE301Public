@@ -1,4 +1,5 @@
 <?php
+
 // Inclure le fichier de configuration pour la connexion à la base de données
 require_once '../config/config.php';
 
@@ -33,6 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     } else {
         $error_message = "Aucun utilisateur trouvé.";
+        $error_message = "Adresse e-mail non trouvée.";
     }
 }
 ?>
@@ -63,17 +65,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="col-md-6 col-lg-4">
                 <div class="card">
                     <div class="card-header">
-                        Connecte toi pour accéder à ton espace administrateur!
+                        Connecte-toi pour accéder à ton espace administrateur!
                     </div>
                     <div class="card-body">
-                        <!-- Formulaire de connexion -->
                         <form method="POST">
-                            <div class="mb-3">
-                                <input type="text" class="form-control" name="prenom" placeholder="Prénom" required>
-                            </div>
-                            <div class="mb-3">
-                                <input type="text" class="form-control" name="nom" placeholder="Nom" required>
-                            </div>
                             <div class="mb-3">
                                 <input type="email" class="form-control" name="email" placeholder="Email" required>
                             </div>
