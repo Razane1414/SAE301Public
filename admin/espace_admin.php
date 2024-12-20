@@ -203,7 +203,6 @@ $events = Event::getAllEvents($pdo);
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-
     <script src="../include/js/calendrier.js"></script>
     <script src="../include/js/admin.js"></script>
 
