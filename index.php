@@ -5,14 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Team Vulcan</title>
-    <link rel="stylesheet" href="include/css/header.css">
     <link rel="stylesheet" href="include/css/home.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Scripts JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
-
     <?php include 'include/header.php'; ?>
     <!-- Section Hero -->
     <div class="home">
@@ -90,12 +91,7 @@
             </div>
         </div>
     </div>
-</div>
 
-
-    <!-- Scripts JS -->
-    <script src="include/js/script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <?php include 'include/footer.php'; ?>
 </body>

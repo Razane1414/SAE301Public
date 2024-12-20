@@ -57,33 +57,42 @@ $adherent_prenom = $_SESSION['adherent_prenom'];
             <div class="header">Événement</div>
             <div class="content-section">
                 <div class="text-section">
-                    <div class="event-title">Aucun événement sélectionné</div>
-                    <p class="event-date"></p>
-                    <p class="event-location"></p>
-                    <p class="event-type"></p>
-                    <p class="description">Cliquez sur un événement du calendrier pour afficher ses détails ici.</p>
+                    <div class="evenInfo">
+                        <div class="event-title">Aucun événement sélectionné</div>
+                        
+                        <div class="detailEvent"> 
+                            <p class="event-location"></p>
+                            <p class="description">Cliquez sur un événement du calendrier pour afficher ses détails ici.</p>
+                        </div>
+                    </div>
 
                     <!-- Affichage des informations de l'admin -->
                     <div class="admin-info">
-                        <h3>Informations de l'admin</h3>
-                        <p><strong>Nom :</strong> <?php echo htmlspecialchars($admin['nom']); ?></p>
-                        <p><strong>Prénom :</strong> <?php echo htmlspecialchars($admin['prenom']); ?></p>
-                        <p><strong>Biographie :</strong> <?php echo nl2br(htmlspecialchars($admin['biographie'])); ?></p>
-                        <p><strong>Fonction :</strong> <?php echo htmlspecialchars($admin['fonction']); ?></p>
+                        <p><?php echo nl2br(htmlspecialchars($admin['biographie'])); ?></p>
+                        <div class="bottomCard d-flex justify-content-between align-items-center">
+                            <!-- Colonne gauche : image -->
+                            <div class="left">
+                                <?php if ($admin['photo']) : ?>
+                                    <img src="<?php echo $admin['photo']; ?>" alt="Photo de l'admin" class="img-fluid" style="max-width: 200px;">
+                                <?php else : ?>
+                                    <p>Aucune photo disponible</p>
+                                <?php endif; ?>
+                            </div>
 
-                        <!-- Affichage de la photo de l'admin -->
-                        <?php if ($admin['photo']) : ?>
-                            <img src="<?php echo $admin['photo']; ?>" alt="Photo de l'admin" class="img-fluid" style="max-width: 200px;">
-                        <?php else : ?>
-                            <p>Aucune photo disponible</p>
-                        <?php endif; ?>
-                    </div>                    
+                            <!-- Colonne droite : informations -->
+                            <div class="right">
+                                <div class="nomCard"><?php echo $admin['nom']; echo ' ' . $admin['prenom']; ?></div>
+                                <p><?php echo $admin['fonction']; ?></p>
+                            </div>
+                        </div>
+                    </div>
+                                
                     <!-- Bouton d'inscription -->
                     <button id="btn-inscription" class="btn-register" style="display:none;">S'inscrire</button>
                 </div>
                 <div class="image-section">
                     <div class="image-container">
-                        <img src="../include/images/jjb.png" alt="JJB Stage">
+                        <img src="../include/images/img_combat.png" alt="Image Combat">
                     </div>
                 </div>
             </div>
@@ -93,4 +102,4 @@ $adherent_prenom = $_SESSION['adherent_prenom'];
     <?php include '../include/footer.php'; ?>
 </body>
 
-</html>
+</html> 

@@ -29,9 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         const event = data.events[0];
                         document.querySelector('.event-title').textContent = event.titre;
                         document.querySelector('.description').textContent = event.description;
-                        document.querySelector('.event-date').textContent = `Date : ${event.date_event}`;
-                        document.querySelector('.event-location').textContent = `Lieu : ${event.lieu}`;
-                        document.querySelector('.event-type').textContent = `Type : ${event.type}`;
+                        document.querySelector('.event-location').textContent =  event.lieu;
                         document.getElementById('btn-inscription').style.display = 'block';
                     }
                 });

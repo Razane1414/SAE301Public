@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../include/css/header.css">
+    <link rel="stylesheet" href="http://localhost/SAE301Local/include/css/header.css">
+    <!-- Lien vers le fichier JavaScript -->
+    <script src="http://localhost/SAE301Local/include/js/script.js"></script>
 </head>
 <body>
     <header>
@@ -62,8 +64,6 @@
 </div>
     </header>
 
-    <!-- Lien vers le fichier JavaScript -->
-    <script src="../include/js/script.js"></script>
 </body>
 
 </html>

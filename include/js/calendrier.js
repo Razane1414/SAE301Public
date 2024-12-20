@@ -4,20 +4,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Initialiser le calendrier FullCalendar
     var calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',  // Vue par défaut (mois)
+        initialView: 'dayGridMonth',  // Vue par mois
         events: function(info, successCallback, failureCallback) {
             // Récupérer les événements depuis l'API avec AJAX
-            fetch('http://localhost/SAE301Local/api/get_event.php') // Remplacez par l'URL de votre API
+            fetch('http://localhost/SAE301Local/api/get_event.php') 
+            
                 .then(response => response.json())
                 .then(data => {
                     // Ajouter les événements dans FullCalendar
                     const events = data.events.map(event => ({
                         id: event.id,  // ID de l'événement pour l'édition
                         title: event.titre,
-                        start: event.date_event,  // Date de début de l'événement
-                        description: event.description,  // Description de l'événement
-                        location: event.lieu,  // Lieu de l'événement
-                        type: event.type,  // Type de l'événement
+                        start: event.date_event,  
+                        description: event.description,  
+                        location: event.lieu,  
+                        type: event.type,  
                     }));
                     
                     successCallback(events); // Ajouter les événements au calendrier

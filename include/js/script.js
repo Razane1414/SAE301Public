@@ -1,3 +1,4 @@
+// MENU BURGEEER
 document.addEventListener("DOMContentLoaded", function () {
     // Sélectionne les éléments
     const burgerMenu = document.getElementById("burger-menu");
