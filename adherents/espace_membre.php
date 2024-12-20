@@ -9,11 +9,22 @@ if (!isset($_SESSION['adherent_id'])) {
     exit;
 }
 
+// Requête pour récupérer les informations de l'admin, y compris la photo
+$sqlAdmin = "SELECT nom, prenom, biographie, fonction, photo FROM admins WHERE id = :id";
+$stmt = $pdo->prepare($sqlAdmin);
+$stmt->execute(['id' => 1]);  // On récupère l'admin avec l'ID 1 comme exemple
+$admin = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// Vérification si l'admin existe
+if ($admin === false) {
+    echo "Admin non trouvé.";
+    exit;
+}
+
 // Utilisation des données du membre connecté
 $adherent_id = $_SESSION['adherent_id'];
 $adherent_nom = $_SESSION['adherent_nom'];
 $adherent_prenom = $_SESSION['adherent_prenom'];
-
 ?>
 
 <!DOCTYPE html>
@@ -51,9 +62,24 @@ $adherent_prenom = $_SESSION['adherent_prenom'];
                     <p class="event-location"></p>
                     <p class="event-type"></p>
                     <p class="description">Cliquez sur un événement du calendrier pour afficher ses détails ici.</p>
-                    
+
+                    <!-- Affichage des informations de l'admin -->
+                    <div class="admin-info">
+                        <h3>Informations de l'admin</h3>
+                        <p><strong>Nom :</strong> <?php echo htmlspecialchars($admin['nom']); ?></p>
+                        <p><strong>Prénom :</strong> <?php echo htmlspecialchars($admin['prenom']); ?></p>
+                        <p><strong>Biographie :</strong> <?php echo nl2br(htmlspecialchars($admin['biographie'])); ?></p>
+                        <p><strong>Fonction :</strong> <?php echo htmlspecialchars($admin['fonction']); ?></p>
+
+                        <!-- Affichage de la photo de l'admin -->
+                        <?php if ($admin['photo']) : ?>
+                            <img src="<?php echo $admin['photo']; ?>" alt="Photo de l'admin" class="img-fluid" style="max-width: 200px;">
+                        <?php else : ?>
+                            <p>Aucune photo disponible</p>
+                        <?php endif; ?>
+                    </div>                    
                     <!-- Bouton d'inscription -->
-                    <button id="btn-inscription" class="btn btn-primary" style="display:none;">S'inscrire</button>
+                    <button id="btn-inscription" class="btn-register" style="display:none;">S'inscrire</button>
                 </div>
                 <div class="image-section">
                     <div class="image-container">
@@ -62,8 +88,6 @@ $adherent_prenom = $_SESSION['adherent_prenom'];
                 </div>
             </div>
         </div>
-
-   
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <?php include '../include/footer.php'; ?>

@@ -122,3 +122,22 @@ body {
     text-align: left;
     margin-top: 20px;
 }
+.btn-register {
+    background-color: #95ac4a; /* Couleur verte */
+    color: #ffffff; /* Couleur du texte blanche */
+    font-weight: bold; /* Texte en gras */
+    font-size: 1rem; /* Taille de la police */
+    padding: 15px 25px; /* Espace intérieur du bouton */
+    border: none; /* Pas de bordure */
+    border-radius: 0px; /* Coins arrondis */
+    text-transform: uppercase; /* Texte en majuscule */
+    clip-path: polygon(0 0, 100% 0, 100% 60%, 80% 100%, 0 100%); /* Forme personnalisée */
+    cursor: pointer; /* Curseur pointeur au survol */
+    transition: background-color 0.3s ease; /* Transition pour effet hover */
+    display: inline-block; /* Affichage inline-block */
+    text-align: center; /* Texte centré */
+}
+
+.btn-register:hover {
+    background-color: #7d9140; /* Couleur verte plus foncée au survol */
+}
