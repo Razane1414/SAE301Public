@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 19 déc. 2024 à 15:33
+-- Généré le : ven. 20 déc. 2024 à 14:57
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -57,15 +57,18 @@ CREATE TABLE `admins` (
   `prenom` varchar(100) NOT NULL,
   `email` varchar(150) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `date_creation` timestamp NOT NULL DEFAULT current_timestamp()
+  `date_creation` timestamp NOT NULL DEFAULT current_timestamp(),
+  `biographie` text DEFAULT NULL,
+  `fonction` varchar(255) DEFAULT NULL,
+  `photo` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `admins`
 --
 
-INSERT INTO `admins` (`id`, `nom`, `prenom`, `email`, `password`, `date_creation`) VALUES
-(1, 'Admin', 'Admin', 'admin@gmail.com', '$2y$10$.NazKPgWnIUV.XgqdDHeke.DubZkF2m2webfKSYCeasHpwBFNvt92', '2024-12-09 14:11:33');
+INSERT INTO `admins` (`id`, `nom`, `prenom`, `email`, `password`, `date_creation`, `biographie`, `fonction`, `photo`) VALUES
+(1, 'TIVEYRAT', 'David', 'admin@gmail.com', '$2y$10$.NazKPgWnIUV.XgqdDHeke.DubZkF2m2webfKSYCeasHpwBFNvt92', '2024-12-09 14:11:33', 'Ceinture bleue grappling et grappling-fight\nCeinture noire de Judo\nCeinture noire de Ju-Jitsu\nCeinture bleue de Ju-Jitsu Brésilien', 'Entraineur JJB, Grappling', '/SAE301Local/include/images/photo.png');
 
 -- --------------------------------------------------------
 
@@ -87,8 +90,7 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`id`, `titre`, `description`, `date_event`, `lieu`, `type`) VALUES
-(35, 'nouvel event', 'dc', '2024-12-27', 'xx', 'MMA'),
-(36, 'caca', 'QDSSV', '2024-12-19', 'ZDQS', 'MMA');
+(40, 'STAGE DE DECOUVERTE JJB', 'L\'événement sélectionné est un stage de découverte de Jiu-Jitsu Brésilien (JJB), une opportunité idéale pour s\'initier à cet art martial et en apprendre les bases dans un cadre encadré et convivial.', '2024-12-25', 'Paris', 'JJB');
 
 -- --------------------------------------------------------
 
@@ -108,8 +110,7 @@ CREATE TABLE `inscriptions` (
 --
 
 INSERT INTO `inscriptions` (`id`, `adherent_id`, `event_id`, `date_inscription`) VALUES
-(1, 5, 36, '2024-12-19 09:59:24'),
-(2, 5, 35, '2024-12-19 09:59:46');
+(3, 5, 40, '2024-12-20 13:41:05');
 
 --
 -- Index pour les tables déchargées
@@ -157,19 +158,19 @@ ALTER TABLE `adherents`
 -- AUTO_INCREMENT pour la table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT pour la table `inscriptions`
 --
 ALTER TABLE `inscriptions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Contraintes pour les tables déchargées
