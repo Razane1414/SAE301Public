@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
         events: function(info, successCallback, failureCallback) {
-            fetch('http://localhost:8888/SAE301Local/api/get_event.php')
+            fetch('http://localhost/SAE301Local/api/get_event.php')
                 .then(response => response.json())
                 .then(data => {
                     const events = data.events.map(event => ({
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const eventId = info.event.id;
             selectedEventId = eventId;
 
-            fetch(`http://localhost:8888/SAE301Local/api/get_event.php?id=${eventId}`)
+            fetch(`http://localhost/SAE301Local/api/get_event.php?id=${eventId}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
