@@ -199,9 +199,12 @@ $events = Event::getAllEvents($pdo);
     <title>Gestion des événements</title>
     <link rel="stylesheet" href="../include/css/admin.css">
     <link rel="stylesheet" href="../include/css/calendrier.css">
+    <link rel="stylesheet" href="../include/css/header.css">
+
 
     <!-- FullCalendar -->
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <script src="../include/js/calendrier.js"></script>
     <script src="../include/js/admin.js"></script>
