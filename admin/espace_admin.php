@@ -197,8 +197,7 @@ $events = Event::getAllEvents($pdo);
     <title>Gestion des événements</title>
     <link rel="stylesheet" href="../include/css/admin.css">
     <link rel="stylesheet" href="../include/css/calendrier.css">
-    <link rel="stylesheet" href="../include/css/header.css">
-
+    <link rel="stylesheet" href="../include/css/home.css">
 
     <!-- FullCalendar -->
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
@@ -222,8 +221,6 @@ $events = Event::getAllEvents($pdo);
             <img src="../include/images/plus.png" alt="Plus" width="24" height="24">
         </button>
     </div>
-
-
 
     <!-- Formulaire caché initialement -->
     <div id="add-event-form" class="carte-formulaire" style="display:none;">
@@ -266,132 +263,160 @@ $events = Event::getAllEvents($pdo);
 
 
     <?php if ($eventToEdit): ?>
-    <h2>Modifier l'événement</h2>
-    <form method="POST">
-        <div>
-            <label for="edit_titre">Titre</label>
-            <input type="text" id="edit_titre" name="titre" value="<?= $eventToEdit['titre'] ?>" required>
-        </div>
-        <div>
-            <label for="edit_description">Description</label>
-            <textarea id="edit_description" name="description" required><?= $eventToEdit['description'] ?></textarea>
-        </div>
-        <div>
-            <label for="edit_date_event">Date</label>
-            <input type="date" id="edit_date_event" name="date_event" value="<?= $eventToEdit['date_event'] ?>" required>
-        </div>
-        <div>
-            <label for="edit_lieu">Lieu</label>
-            <input type="text" id="edit_lieu" name="lieu" value="<?= $eventToEdit['lieu'] ?>">
-        </div>
-        <div>
-            <label for="edit_type">Type</label>
-            <select id="edit_type" name="type" required>
-                <?php
-                $eventTypes = Event::getEventTypes($pdo);
-                foreach ($eventTypes as $value => $label) {
-                    $selected = ($value == $eventToEdit['type']) ? 'selected' : '';
-                    echo "<option value=\"$value\" $selected>$label</option>";
-                }
-                ?>
-            </select>
-        </div>
-        <input type="hidden" name="id" value="<?= $eventToEdit['id'] ?>">
-        <button type="submit" name="update_event">Mettre à jour</button>
-    </form>
-    <?php endif; ?>
+        <div id="section-modifier">
+            <!-- Formulaire caché initialement -->
+            <div class="carte-formulaire">
+                <div class="carte-header">Modifier l'évènement</div>
+
+                <!-- Corps de la carte (formulaire) -->
+                <div class="carte-corps">
+                    <form method="POST">
+                        <div>
+                            <label for="edit_titre">Titre de l'événement</label>
+                            <input type="text" id="edit_titre" class="champ-formulaire" name="titre"
+                                value="<?= $eventToEdit['titre'] ?>" required>
+                        </div>
+                        <div>
+                            <label for="edit_description">Description</label>
+                            <textarea id="edit_description" class="champ-formulaire" name="description"
+                                required><?= $eventToEdit['description'] ?></textarea>
+                        </div>
+                        <div>
+                            <label for="edit_date_event">Date</label>
+                            <input type="date" id="edit_date_event" class="champ-formulaire" name="date_event"
+                                value="<?= $eventToEdit['date_event'] ?>" required>
+                        </div>
+                        <div>
+                            <label for="edit_lieu">Lieu</label>
+                            <input type="text" id="edit_lieu" class="champ-formulaire" name="lieu"
+                                value="<?= $eventToEdit['lieu'] ?>">
+                        </div>
+                        <div>
+                            <label for="edit_type">Type</label>
+                            <select id="edit_type" class="champ-formulaire" name="type" required>
+                                <?php
+                                $eventTypes = Event::getEventTypes($pdo);
+                                foreach ($eventTypes as $value => $label) {
+                                    $selected = ($value == $eventToEdit['type']) ? 'selected' : '';
+                                    echo "<option value=\"$value\" $selected>$label</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <input type="hidden" name="id" class="champ-formulaire" value="<?= $eventToEdit['id'] ?>">
+                        <div class="center-btn">
+                            <button type="submit" name="update_event" class="btn-ajouter">Mettre à jour</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        <?php endif; ?>
 
 
+        <div id="section-modifier">
+            <div class="carte-formulaire">
+                <div class="carte-header">Dernières Inscriptions aux Événements</div>
+                <div class="carte-corps">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nom de l'adhérent</th>
+                                <th>Prénom</th>
+                                <th>Événement</th>
+                                <th>Date d'inscription</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($inscriptions as $inscription): ?>
+                                <tr>
+                                    <td><?= htmlspecialchars($inscription['nom_adherent']) ?></td>
+                                    <td><?= htmlspecialchars($inscription['prenom_adherent']) ?></td>
+                                    <td><?= htmlspecialchars($inscription['titre_evenement']) ?></td>
+                                    <td><?= htmlspecialchars($inscription['date_inscription']) ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 
-    <h2>Dernières Inscriptions aux Événements</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Nom de l'adhérent</th>
-                <th>Prénom</th>
-                <th>Événement</th>
-                <th>Date d'inscription</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($inscriptions as $inscription): ?>
-            <tr>
-                <td><?= htmlspecialchars($inscription['nom_adherent']) ?></td>
-                <td><?= htmlspecialchars($inscription['prenom_adherent']) ?></td>
-                <td><?= htmlspecialchars($inscription['titre_evenement']) ?></td>
-                <td><?= htmlspecialchars($inscription['date_inscription']) ?></td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+        <!-- Formulaire d'ajout d'adhérent -->
+        <div id="section-ajouter-adherent">
+            <!-- Carte contenant le formulaire -->
+            <div class="carte-formulaire">
+                <!-- En-tête de la carte -->
+                <div class="carte-header">Ajouter un adhérent</div>
 
-    <!-- Formulaire d'ajout d'adhérent -->
-    <div id="section-ajouter-adherent">
-        <!-- Carte contenant le formulaire -->
-        <div class="carte-formulaire">
-            <!-- En-tête de la carte -->
-            <div class="carte-header">Ajouter un adhérent</div>
+                <!-- Corps de la carte (formulaire) -->
+                <div class="carte-corps">
+                    <form method="POST">
+                        <div>
+                            <input type="text" class="champ-formulaire" id="nom" name="nom"
+                                placeholder="Nom de l'adhérent" required>
+                        </div>
+                        <div>
+                            <input type="text" class="champ-formulaire" id="prenom" name="prenom"
+                                placeholder="Prenom de l'adhérent" required>
+                        </div>
+                        <div>
+                            <input type="email" class="champ-formulaire" id="email" name="email" placeholder="Email"
+                                required>
+                        </div>
+                        <div>
+                            <input type="password" class="champ-formulaire" id="password" name="password"
+                                placeholder="Mot de passe" required>
+                        </div>
+                        <div>
+                            <input type="date" class="champ-formulaire" id="date_naissance" name="date_naissance"
+                                placeholder="Mot de passe" required>
+                        </div>
+                        <div>
+                            <select class="champ-formulaire" id="sexe" name="sexe" required>
+                                <option value="M">Homme</option>
+                                <option value="F">Femme</option>
+                            </select>
+                        </div>
+                        <!-- Bouton pour soumettre le formulaire -->
+                        <div class="center-btn">
+                            <button type="submit" name="add_adherent" class="btn-ajouter">Ajouter un
+                                adhérent</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
-            <!-- Corps de la carte (formulaire) -->
-            <div class="carte-corps">
-                <form method="POST">
-                    <div>
-                        <input type="text" class="champ-formulaire" id="nom" name="nom" placeholder="Nom de l'adhérent"
-                            required>
-                    </div>
-                    <div>
-                        <input type="text" class="champ-formulaire" id="prenom" name="prenom"
-                            placeholder="Prenom de l'adhérent" required>
-                    </div>
-                    <div>
-                        <input type="email" class="champ-formulaire" id="email" name="email" placeholder="Email"
-                            required>
-                    </div>
-                    <div>
-                        <input type="password" class="champ-formulaire" id="password" name="password"
-                            placeholder="Mot de passe" required>
-                    </div>
-                    <div>
-                        <input type="date" class="champ-formulaire" id="date_naissance" name="date_naissance"
-                            placeholder="Mot de passe" required>
-                    </div>
-                    <div>
-                        <select class="champ-formulaire" id="sexe" name="sexe" required>
-                            <option value="M">Homme</option>
-                            <option value="F">Femme</option>
-                        </select>
-                    </div>
-                    <!-- Bouton pour soumettre le formulaire -->
-                    <div class="center-btn">
-                        <button type="submit" name="add_adherent" class="btn-ajouter">Ajouter un adhérent</button>
-                    </div>
-                </form>
+        <div id="section-modifier">
+            <div class="carte-formulaire">
+                <div class="carte-header">Liste des Adhérents</div>
+                <div class="carte-corps">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Email</th>
+                            <th>Date de naissance</th>
+                            <th>Sexe</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($adherents as $adherent): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($adherent['nom']) ?></td>
+                                <td><?= htmlspecialchars($adherent['prenom']) ?></td>
+                                <td><?= htmlspecialchars($adherent['email']) ?></td>
+                                <td><?= htmlspecialchars($adherent['date_naissance']) ?></td>
+                                <td><?= htmlspecialchars($adherent['sexe'] == 'M' ? 'Homme' : 'Femme') ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-    <h2>Liste des Adhérents</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Email</th>
-                <th>Date de naissance</th>
-                <th>Sexe</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($adherents as $adherent): ?>
-            <tr>
-                <td><?= htmlspecialchars($adherent['nom']) ?></td>
-                <td><?= htmlspecialchars($adherent['prenom']) ?></td>
-                <td><?= htmlspecialchars($adherent['email']) ?></td>
-                <td><?= htmlspecialchars($adherent['date_naissance']) ?></td>
-                <td><?= htmlspecialchars($adherent['sexe'] == 'M' ? 'Homme' : 'Femme') ?></td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+
     <?php
     include '../include/footer.php';
     ?>

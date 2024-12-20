@@ -121,3 +121,9 @@ p {
     text-align: center;
     margin-top: 20px;
 }
+
+.fc-col-header-cell-cushion,
+.fc-daygrid-day-number {
+    text-decoration: none;
+    color: white;
+}
