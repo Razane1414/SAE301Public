@@ -1,85 +1,64 @@
 <?php
-// Inclure le fichier de configuration pour la connexion à la base de données
+session_start(); // Démarrer la session
+
+// Inclusion du fichier contenant la classe Admin et la configuration de la base de données
 require_once '../config/config.php';
+require_once '../class/Admin.php';
 
+// Gestion du formulaire de connexion
+$error_message = "";
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
 
-// Vérifier si le formulaire a été soumis
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Récupérer les données du formulaire
-    $prenom = $_POST['prenom'];  // Récupérer le prénom
-    $nom = $_POST['nom'];  // Récupérer le nom
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    // Vérification si l'email existe dans la base de données
+    $admin = Admin::emailExists($pdo, $email);
+    if ($admin) {
+        // Vérification du mot de passe
+        if (password_verify($password, $admin['password'])) {
+            // L'administrateur est authentifié, stocker ses informations dans la session
+            $_SESSION['admin_id'] = $admin['id'];
+            $_SESSION['admin_nom'] = $admin['nom'];
+            $_SESSION['admin_prenom'] = $admin['prenom'];
+            $_SESSION['admin_email'] = $admin['email'];
 
-
-    // Rechercher l'utilisateur dans la base de données avec le nom, le prénom et l'email
-    $sql = "SELECT * FROM admins WHERE prenom = ? AND nom = ? AND email = ?";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$prenom, $nom, $email]);
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-
-    // Vérifier si l'utilisateur existe avec cet email, nom et prénom
-    if ($row) {
-        // Vérifier si le mot de passe correspond (avec password_verify si le mot de passe est haché)
-        if (password_verify($password, $row['password'])) {
-            // Démarrer une session et rediriger vers l'espace membre
-            session_start();
-            $_SESSION['user_id'] = $row['id'];
-            $_SESSION['user_name'] = $row['nom'];  // Stocker le nom pour l'afficher dans l'espace membre
-
-
-            // Rediriger vers la page admin
-            header("Location: espace_admin.php");
-            exit();  // Assure que le script s'arrête ici après la redirection
+            // Redirection vers la page d'accueil ou tableau de bord
+            header('Location: espace_admin.php');
+            exit;
         } else {
             $error_message = "Mot de passe incorrect.";
         }
     } else {
-        $error_message = "Aucun utilisateur trouvé.";
+        $error_message = "Adresse e-mail non trouvée.";
     }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Espace Admin</title>
-    <!-- Lien vers le CSS de Bootstrap -->
+    <title>Espace Admin - Connexion</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJxXHgU1nK4mBfFm9kgtVfVhXNdbD3TtWov2pzv56T2XT4D9vleK2U9vH8Xk" crossorigin="anonymous">
-    <!-- Google Fonts pour Plus Jakarta Sans -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;800&display=swap" rel="stylesheet">
-    <!-- Lien vers le fichier CSS personnalisé -->
     <link rel="stylesheet" href="../include/css/connexion.css">
     <link rel="stylesheet" href="../include/css/home.css">
 </head>
-
-
 <body>
     <div class="container">
-        <!-- Titre Espace Membres -->
         <div class="header-title">
             Espace Admin
         </div>
-       
+
         <div class="row justify-content-center">
             <div class="col-md-6 col-lg-4">
                 <div class="card">
                     <div class="card-header">
-                        Connecte toi pour accéder à ton espace administrateur!
+                        Connecte-toi pour accéder à ton espace administrateur!
                     </div>
                     <div class="card-body">
-                        <!-- Formulaire de connexion -->
                         <form method="POST">
-                            <div class="mb-3">
-                                <input type="text" class="form-control" name="prenom" placeholder="Prénom" required>
-                            </div>
-                            <div class="mb-3">
-                                <input type="text" class="form-control" name="nom" placeholder="Nom" required>
-                            </div>
                             <div class="mb-3">
                                 <input type="email" class="form-control" name="email" placeholder="Email" required>
                             </div>
@@ -89,10 +68,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <button type="submit" class="btn btn-primary">Se connecter</button>
                         </form>
 
-
-                        <?php if (isset($error_message)) { ?>
+                        <?php if (!empty($error_message)) { ?>
                             <div class="alert alert-danger mt-3" role="alert">
-                                <?php echo $error_message; ?>
+                                <?php echo htmlspecialchars($error_message); ?>
                             </div>
                         <?php } ?>
                     </div>
@@ -101,8 +79,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
 
-
-    <!-- Lien vers le JS de Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0T4b36V7oStn4R+Vofc6u7H0e4k5/Jk5g68j9dqzVdovXfqu" crossorigin="anonymous"></script>
 </body>
 </html>
